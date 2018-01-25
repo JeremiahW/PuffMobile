@@ -3,6 +3,7 @@
  */
 
 import axios from 'axios';
+import * as appConfig from 'app-config';
 
 class RestfulAPI{
     constructor(){
@@ -33,7 +34,7 @@ class RestfulAPI{
     }
 
     getRequestUrl(req){
-        const serverName = "api.51bakery.com";
+        const serverName = appConfig.host;
         const uri = req.getRequestUri();
         const protocol = "http";
         return `${protocol}://${serverName}/${uri}`;;
