@@ -1,5 +1,5 @@
 import { createLogger } from 'redux-logger'
-import { LoggerType } from '../constant/logger';
+import { LoggerType } from 'logger-type';
 
 export const logger = createLogger({
     //Options can be referenced by https://github.com/evgenyrodionov/redux-logger 

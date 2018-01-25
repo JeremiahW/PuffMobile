@@ -1,3 +1,7 @@
+/**
+ * @providesModule user-action-types
+ */
+
 import keyMirror from "keymirror";
 
 export const UserConstant = {

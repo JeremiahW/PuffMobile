@@ -1,5 +1,5 @@
 
-import { UserConstant } from "../constant/user-action-types";
+import { UserConstant } from "user-action-types";
 
 export function onLogin(username, password){
     console.log(`2. actions内的方法被执行, 参数username: ${username}, password: ${password}`);

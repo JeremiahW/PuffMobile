@@ -1,3 +1,7 @@
+/**
+ * @providesModule logger-type
+ */
+
 export const LoggerType = {
     Log: "log",
     Console: "console",

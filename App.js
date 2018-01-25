@@ -13,11 +13,8 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
+        <Text>Login Request</Text>
           <UserContainer/>
-
-          <Text>Open up App.js to start working on your app!</Text>
-          <Text>Changes you make will automatically reload.</Text>
-          <Text>Shake your phone to open the developer menu.</Text>
         </View>
       </Provider>
     );
