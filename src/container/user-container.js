@@ -3,9 +3,10 @@ import { Button, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import * as UserActions from "../actions/user-actions";
-import UserList  from "../components/userlist-component";
 import restfulApi from "restful-api";
 import UserLoginRequest from "../services/request/user-login-request";
+import UserList  from "../components/userlist-component";
+
 
 class UserContainer extends Component{
     constructor(props){
