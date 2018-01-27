@@ -8,7 +8,6 @@ export default class UserList extends Component{
     }
 
     render(){
-        console.log("UserList组件刷新.");
         return <View>
             <Text>I am the component</Text>
         </View>

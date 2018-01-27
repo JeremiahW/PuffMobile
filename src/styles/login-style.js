@@ -18,7 +18,7 @@ export const LoginStyles = EStyleSheet.create({
     },
     loginInput:{
         width: "80%",
-        height: 30,
+        height: 50,
         fontSize:'$small',
         paddingVertical:0,
         alignSelf: "center"

@@ -7,8 +7,7 @@ const initState = {
 export default (state=initState, {type, data})=>{
     switch (type){
         case UserConstant.ActionTypes.LOGIN:
-            console.log("3. Reducer收到dispatch后, 进行组合state.");
-            return {...state, isLoggedIn: true};
+            return {...state, ...data};
         case UserConstant.ActionTypes.LOGOUT:
             return {...state, isLoggedIn: false};
     default:

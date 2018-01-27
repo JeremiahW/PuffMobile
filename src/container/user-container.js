@@ -17,35 +17,17 @@ class UserContainer extends Component{
     }
 
     componentWillReceiveProps(nextProps){
-        if(this.props.user !== nextProps.user){
-            console.log("容器事件发现Props变更.");
-            //强制刷新组件.
-            this.setState(this.state);
-        }
+      
     }
 
-     onLogin = async ()=> {
-        console.log("1.容器组件响应事件, 执行action creators内的方法.");
-        this.props.onLogin("aaaaa", "pwdpwdpwd");
-    }
-
-    doLogin = async()=> {
-        const request = new UserLoginRequest("admin", "123123");
-        try{
-            var result = await restfulApi.processServiceCall(request);
-            console.log(result);
-        }
-        catch(exp){
-            console.log(exp);
-        }
-    }
+  
+ 
 
     render(){
         return (
             <View>
                 <Text>FB, AAPL</Text>
-                <Button onPress={this.onLogin} title="Show Redux Flow"/>
-                <Button onPress={this.doLogin} title="Dispatch Request"/>
+                
                 <UserList users={this.state.users} />
             </View>
         )

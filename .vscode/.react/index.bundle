@@ -58261,13 +58261,17 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
   var _baseStyle = require(_dependencyMap[6], "base-style");
 
-  var _userContainer = require(_dependencyMap[7], "./src/container/user-container");
-
-  var _userContainer2 = _interopRequireDefault(_userContainer);
-
-  var _loginComponent = require(_dependencyMap[8], "./src/components/login-component");
+  var _loginComponent = require(_dependencyMap[7], "./src/components/login-component");
 
   var _loginComponent2 = _interopRequireDefault(_loginComponent);
+
+  var _rootContainer = require(_dependencyMap[8], "./src/container/root-container");
+
+  var _rootContainer2 = _interopRequireDefault(_rootContainer);
+
+  var _userContainer = require(_dependencyMap[9], "./src/container/user-container");
+
+  var _userContainer2 = _interopRequireDefault(_userContainer);
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -58316,7 +58320,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
             store: store,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 17
+              lineNumber: 19
             }
           },
           _react3.default.createElement(
@@ -58324,7 +58328,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 18
+                lineNumber: 20
               }
             },
             _react3.default.createElement(
@@ -58332,16 +58336,24 @@ __d(function (global, require, module, exports, _dependencyMap) {
               {
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 19
+                  lineNumber: 21
                 }
               },
               _react3.default.createElement(_reactRouterNative.Route, {
                 exact: true,
                 path: "/",
+                component: _rootContainer2.default,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 22
+                }
+              }),
+              _react3.default.createElement(_reactRouterNative.Route, {
+                path: "/login",
                 component: _loginComponent2.default,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 20
+                  lineNumber: 23
                 }
               }),
               _react3.default.createElement(_reactRouterNative.Route, {
@@ -58349,7 +58361,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                 component: _userContainer2.default,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 21
+                  lineNumber: 24
                 }
               })
             )
@@ -58362,7 +58374,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }(_react3.default.Component));
 
   exports.default = App;
-},487,[108,175,12,488,517,526,607,554,589],"puffmobile/App.js");
+},487,[108,175,12,488,517,526,554,605,608,571],"puffmobile/App.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -60255,10 +60267,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
         switch (type) {
             case _userActionTypes.UserConstant.ActionTypes.LOGIN:
-                console.log("3. Reducer收到dispatch后, 进行组合state.");
-                return _extends({}, state, {
-                    isLoggedIn: true
-                });
+                return _extends({}, state, data);
 
             case _userActionTypes.UserConstant.ActionTypes.LOGOUT:
                 return _extends({}, state, {
@@ -64239,1739 +64248,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-
-    var _react2 = require(_dependencyMap[0], "react");
-
-    var _react3 = _interopRequireDefault(_react2);
-
-    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
-
-    var _index2 = _interopRequireDefault(_index);
-
-    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-    var _jsxFileName = "d:\\SourceCode\\ReactJS\\PuffMobile\\src\\container\\user-container.js";
-
-    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-    var _reactNative = require(_dependencyMap[2], "react-native");
-
-    var _reactRedux = require(_dependencyMap[3], "react-redux");
-
-    var _userActions = require(_dependencyMap[4], "../actions/user-actions");
-
-    var UserActions = _interopRequireWildcard(_userActions);
-
-    var _restfulApi = require(_dependencyMap[5], "restful-api");
-
-    var _restfulApi2 = _interopRequireDefault(_restfulApi);
-
-    var _userLoginRequest = require(_dependencyMap[6], "../services/request/user-login-request");
-
-    var _userLoginRequest2 = _interopRequireDefault(_userLoginRequest);
-
-    var _userlistComponent = require(_dependencyMap[7], "../components/userlist-component");
-
-    var _userlistComponent2 = _interopRequireDefault(_userlistComponent);
-
-    function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-    var _components = {
-        UserContainer: {
-            displayName: "UserContainer"
-        }
-    };
-
-    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-        filename: "d:/SourceCode/ReactJS/PuffMobile/src/container/user-container.js",
-        components: _components,
-        locals: [module],
-        imports: [_react3.default]
-    });
-
-    function _wrapComponent(id) {
-        return function (Component) {
-            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
-        };
-    }
-
-    var UserContainer = _wrapComponent("UserContainer")(function (_Component) {
-        _inherits(UserContainer, _Component);
-
-        function UserContainer(props) {
-            var _this2 = this;
-
-            _classCallCheck(this, UserContainer);
-
-            var _this = _possibleConstructorReturn(this, (UserContainer.__proto__ || Object.getPrototypeOf(UserContainer)).call(this, props));
-
-            _this.onLogin = function _callee() {
-                return regeneratorRuntime.async(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                console.log("1.容器组件响应事件, 执行action creators内的方法.");
-
-                                _this.props.onLogin("aaaaa", "pwdpwdpwd");
-
-                            case 2:
-                            case "end":
-                                return _context.stop();
-                        }
-                    }
-                }, null, _this2);
-            };
-
-            _this.doLogin = function _callee2() {
-                var request, result;
-                return regeneratorRuntime.async(function _callee2$(_context2) {
-                    while (1) {
-                        switch (_context2.prev = _context2.next) {
-                            case 0:
-                                request = new _userLoginRequest2.default("admin", "123123");
-                                _context2.prev = 1;
-                                _context2.next = 4;
-                                return regeneratorRuntime.awrap(_restfulApi2.default.processServiceCall(request));
-
-                            case 4:
-                                result = _context2.sent;
-                                console.log(result);
-                                _context2.next = 11;
-                                break;
-
-                            case 8:
-                                _context2.prev = 8;
-                                _context2.t0 = _context2["catch"](1);
-                                console.log(_context2.t0);
-
-                            case 11:
-                            case "end":
-                                return _context2.stop();
-                        }
-                    }
-                }, null, _this2, [[1, 8]]);
-            };
-
-            _this.state = {
-                users: [{
-                    username: "aaa"
-                }, {
-                    username: "zzzz"
-                }]
-            };
-            return _this;
-        }
-
-        _createClass(UserContainer, [{
-            key: "componentWillReceiveProps",
-            value: function componentWillReceiveProps(nextProps) {
-                if (this.props.user !== nextProps.user) {
-                    console.log("容器事件发现Props变更.");
-                    this.setState(this.state);
-                }
-            }
-        }, {
-            key: "render",
-            value: function render() {
-                return _react3.default.createElement(
-                    _reactNative.View,
-                    {
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 45
-                        }
-                    },
-                    _react3.default.createElement(
-                        _reactNative.Text,
-                        {
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 46
-                            }
-                        },
-                        "FB, AAPL"
-                    ),
-                    _react3.default.createElement(_reactNative.Button, {
-                        onPress: this.onLogin,
-                        title: "Show Redux Flow",
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 47
-                        }
-                    }),
-                    _react3.default.createElement(_reactNative.Button, {
-                        onPress: this.doLogin,
-                        title: "Dispatch Request",
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 48
-                        }
-                    }),
-                    _react3.default.createElement(_userlistComponent2.default, {
-                        users: this.state.users,
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 49
-                        }
-                    })
-                );
-            }
-        }]);
-
-        return UserContainer;
-    }(_react2.Component));
-
-    function mapStateToProps(state) {
-        console.log("状态被映射到组件prop上.");
-        return {
-            user: state.user
-        };
-    }
-
-    var actionCreators = _extends({}, UserActions);
-
-    UserContainer = (0, _reactRedux.connect)(mapStateToProps, actionCreators)(UserContainer);
-    exports.default = UserContainer;
-},554,[108,175,12,488,555,556,584,587],"puffmobile/src/container/user-container.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-    exports.onLogin = onLogin;
-    exports.onLogOff = onLogOff;
-
-    var _userActionTypes = require(_dependencyMap[0], "user-action-types");
-
-    function onLogin(username, password) {
-        console.log("2. actions\u5185\u7684\u65B9\u6CD5\u88AB\u6267\u884C, \u53C2\u6570username: " + username + ", password: " + password);
-        return function (dispatch) {
-            dispatch({
-                type: _userActionTypes.UserConstant.ActionTypes.LOGIN,
-                data: {
-                    username: username,
-                    password: password
-                }
-            });
-        };
-    }
-
-    function onLogOff(username) {
-        return function (dispatch) {
-            dispatch({
-                type: _userActionTypes.UserConstant.ActionTypes.LOGOUT,
-                data: {
-                    username: username,
-                    password: password
-                }
-            });
-        };
-    }
-},555,[521],"puffmobile/src/actions/user-actions.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-
-    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-    var _axios = require(_dependencyMap[0], "axios");
-
-    var _axios2 = _interopRequireDefault(_axios);
-
-    var _appConfig = require(_dependencyMap[1], "app-config");
-
-    var appConfig = _interopRequireWildcard(_appConfig);
-
-    function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-    var RestfulAPI = function () {
-        function RestfulAPI() {
-            _classCallCheck(this, RestfulAPI);
-        }
-
-        _createClass(RestfulAPI, [{
-            key: "processServiceCall",
-            value: function processServiceCall(req) {
-                var url, method, data, start, response, millis;
-                return regeneratorRuntime.async(function processServiceCall$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                url = this.getRequestUrl(req);
-                                method = req.getMethod();
-                                data = req.getParametersObject();
-                                console.log("Requested method: " + method + ", URL: " + url);
-                                start = Date.now();
-                                _context.next = 7;
-                                return regeneratorRuntime.awrap((0, _axios2.default)({
-                                    method: method,
-                                    url: url,
-                                    data: req.getParametersObject(),
-                                    responseType: 'json'
-                                }));
-
-                            case 7:
-                                response = _context.sent;
-                                millis = Date.now() - start;
-                                console.log("Request elapsed " + Math.floor(millis / 1000));
-                                return _context.abrupt("return", response.data);
-
-                            case 11:
-                            case "end":
-                                return _context.stop();
-                        }
-                    }
-                }, null, this);
-            }
-        }, {
-            key: "getRequestUrl",
-            value: function getRequestUrl(req) {
-                var serverName = appConfig.host;
-                var uri = req.getRequestUri();
-                var protocol = "http";
-                return protocol + "://" + serverName + "/" + uri;
-                ;
-            }
-        }]);
-
-        return RestfulAPI;
-    }();
-
-    var restfulApi = new RestfulAPI();
-    exports.default = restfulApi;
-},556,[557,583],"restful-api");
-__d(function (global, require, module, exports, _dependencyMap) {
-  module.exports = require(_dependencyMap[0], './lib/axios');
-},557,[558],"axios/index.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var utils = require(_dependencyMap[0], './utils');
-
-  var bind = require(_dependencyMap[1], './helpers/bind');
-
-  var Axios = require(_dependencyMap[2], './core/Axios');
-
-  var defaults = require(_dependencyMap[3], './defaults');
-
-  function createInstance(defaultConfig) {
-    var context = new Axios(defaultConfig);
-    var instance = bind(Axios.prototype.request, context);
-    utils.extend(instance, Axios.prototype, context);
-    utils.extend(instance, context);
-    return instance;
-  }
-
-  var axios = createInstance(defaults);
-  axios.Axios = Axios;
-
-  axios.create = function create(instanceConfig) {
-    return createInstance(utils.merge(defaults, instanceConfig));
-  };
-
-  axios.Cancel = require(_dependencyMap[4], './cancel/Cancel');
-  axios.CancelToken = require(_dependencyMap[5], './cancel/CancelToken');
-  axios.isCancel = require(_dependencyMap[6], './cancel/isCancel');
-
-  axios.all = function all(promises) {
-    return Promise.all(promises);
-  };
-
-  axios.spread = require(_dependencyMap[7], './helpers/spread');
-  module.exports = axios;
-  module.exports.default = axios;
-},558,[559,560,562,563,580,581,577,582],"axios/lib/axios.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var bind = require(_dependencyMap[0], './helpers/bind');
-
-  var isBuffer = require(_dependencyMap[1], 'is-buffer');
-
-  var toString = Object.prototype.toString;
-
-  function isArray(val) {
-    return toString.call(val) === '[object Array]';
-  }
-
-  function isArrayBuffer(val) {
-    return toString.call(val) === '[object ArrayBuffer]';
-  }
-
-  function isFormData(val) {
-    return typeof FormData !== 'undefined' && val instanceof FormData;
-  }
-
-  function isArrayBufferView(val) {
-    var result;
-
-    if (typeof ArrayBuffer !== 'undefined' && ArrayBuffer.isView) {
-      result = ArrayBuffer.isView(val);
-    } else {
-      result = val && val.buffer && val.buffer instanceof ArrayBuffer;
-    }
-
-    return result;
-  }
-
-  function isString(val) {
-    return typeof val === 'string';
-  }
-
-  function isNumber(val) {
-    return typeof val === 'number';
-  }
-
-  function isUndefined(val) {
-    return typeof val === 'undefined';
-  }
-
-  function isObject(val) {
-    return val !== null && typeof val === 'object';
-  }
-
-  function isDate(val) {
-    return toString.call(val) === '[object Date]';
-  }
-
-  function isFile(val) {
-    return toString.call(val) === '[object File]';
-  }
-
-  function isBlob(val) {
-    return toString.call(val) === '[object Blob]';
-  }
-
-  function isFunction(val) {
-    return toString.call(val) === '[object Function]';
-  }
-
-  function isStream(val) {
-    return isObject(val) && isFunction(val.pipe);
-  }
-
-  function isURLSearchParams(val) {
-    return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
-  }
-
-  function trim(str) {
-    return str.replace(/^\s*/, '').replace(/\s*$/, '');
-  }
-
-  function isStandardBrowserEnv() {
-    if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
-      return false;
-    }
-
-    return typeof window !== 'undefined' && typeof document !== 'undefined';
-  }
-
-  function forEach(obj, fn) {
-    if (obj === null || typeof obj === 'undefined') {
-      return;
-    }
-
-    if (typeof obj !== 'object') {
-      obj = [obj];
-    }
-
-    if (isArray(obj)) {
-      for (var i = 0, l = obj.length; i < l; i++) {
-        fn.call(null, obj[i], i, obj);
-      }
-    } else {
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-          fn.call(null, obj[key], key, obj);
-        }
-      }
-    }
-  }
-
-  function merge() {
-    var result = {};
-
-    function assignValue(val, key) {
-      if (typeof result[key] === 'object' && typeof val === 'object') {
-        result[key] = merge(result[key], val);
-      } else {
-        result[key] = val;
-      }
-    }
-
-    for (var i = 0, l = arguments.length; i < l; i++) {
-      forEach(arguments[i], assignValue);
-    }
-
-    return result;
-  }
-
-  function extend(a, b, thisArg) {
-    forEach(b, function assignValue(val, key) {
-      if (thisArg && typeof val === 'function') {
-        a[key] = bind(val, thisArg);
-      } else {
-        a[key] = val;
-      }
-    });
-    return a;
-  }
-
-  module.exports = {
-    isArray: isArray,
-    isArrayBuffer: isArrayBuffer,
-    isBuffer: isBuffer,
-    isFormData: isFormData,
-    isArrayBufferView: isArrayBufferView,
-    isString: isString,
-    isNumber: isNumber,
-    isObject: isObject,
-    isUndefined: isUndefined,
-    isDate: isDate,
-    isFile: isFile,
-    isBlob: isBlob,
-    isFunction: isFunction,
-    isStream: isStream,
-    isURLSearchParams: isURLSearchParams,
-    isStandardBrowserEnv: isStandardBrowserEnv,
-    forEach: forEach,
-    merge: merge,
-    extend: extend,
-    trim: trim
-  };
-},559,[560,561],"axios/lib/utils.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  module.exports = function bind(fn, thisArg) {
-    return function wrap() {
-      var args = new Array(arguments.length);
-
-      for (var i = 0; i < args.length; i++) {
-        args[i] = arguments[i];
-      }
-
-      return fn.apply(thisArg, args);
-    };
-  };
-},560,[],"axios/lib/helpers/bind.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  /*!
-   * Determine if an object is a Buffer
-   *
-   * @author   Feross Aboukhadijeh <https://feross.org>
-   * @license  MIT
-   */module.exports = function (obj) {
-    return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer);
-  };
-
-  function isBuffer(obj) {
-    return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj);
-  }
-
-  function isSlowBuffer(obj) {
-    return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0));
-  }
-},561,[],"is-buffer/index.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var defaults = require(_dependencyMap[0], './../defaults');
-
-  var utils = require(_dependencyMap[1], './../utils');
-
-  var InterceptorManager = require(_dependencyMap[2], './InterceptorManager');
-
-  var dispatchRequest = require(_dependencyMap[3], './dispatchRequest');
-
-  function Axios(instanceConfig) {
-    this.defaults = instanceConfig;
-    this.interceptors = {
-      request: new InterceptorManager(),
-      response: new InterceptorManager()
-    };
-  }
-
-  Axios.prototype.request = function request(config) {
-    if (typeof config === 'string') {
-      config = utils.merge({
-        url: arguments[0]
-      }, arguments[1]);
-    }
-
-    config = utils.merge(defaults, this.defaults, {
-      method: 'get'
-    }, config);
-    config.method = config.method.toLowerCase();
-    var chain = [dispatchRequest, undefined];
-    var promise = Promise.resolve(config);
-    this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
-      chain.unshift(interceptor.fulfilled, interceptor.rejected);
-    });
-    this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
-      chain.push(interceptor.fulfilled, interceptor.rejected);
-    });
-
-    while (chain.length) {
-      promise = promise.then(chain.shift(), chain.shift());
-    }
-
-    return promise;
-  };
-
-  utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
-    Axios.prototype[method] = function (url, config) {
-      return this.request(utils.merge(config || {}, {
-        method: method,
-        url: url
-      }));
-    };
-  });
-  utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-    Axios.prototype[method] = function (url, data, config) {
-      return this.request(utils.merge(config || {}, {
-        method: method,
-        url: url,
-        data: data
-      }));
-    };
-  });
-  module.exports = Axios;
-},562,[563,559,574,575],"axios/lib/core/Axios.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var utils = require(_dependencyMap[0], './utils');
-
-  var normalizeHeaderName = require(_dependencyMap[1], './helpers/normalizeHeaderName');
-
-  var DEFAULT_CONTENT_TYPE = {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  };
-
-  function setContentTypeIfUnset(headers, value) {
-    if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-      headers['Content-Type'] = value;
-    }
-  }
-
-  function getDefaultAdapter() {
-    var adapter;
-
-    if (typeof XMLHttpRequest !== 'undefined') {
-      adapter = require(_dependencyMap[2], './adapters/xhr');
-    } else if (typeof process !== 'undefined') {
-      adapter = require(_dependencyMap[3], './adapters/http');
-    }
-
-    return adapter;
-  }
-
-  var defaults = {
-    adapter: getDefaultAdapter(),
-    transformRequest: [function transformRequest(data, headers) {
-      normalizeHeaderName(headers, 'Content-Type');
-
-      if (utils.isFormData(data) || utils.isArrayBuffer(data) || utils.isBuffer(data) || utils.isStream(data) || utils.isFile(data) || utils.isBlob(data)) {
-        return data;
-      }
-
-      if (utils.isArrayBufferView(data)) {
-        return data.buffer;
-      }
-
-      if (utils.isURLSearchParams(data)) {
-        setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-        return data.toString();
-      }
-
-      if (utils.isObject(data)) {
-        setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-        return JSON.stringify(data);
-      }
-
-      return data;
-    }],
-    transformResponse: [function transformResponse(data) {
-      if (typeof data === 'string') {
-        try {
-          data = JSON.parse(data);
-        } catch (e) {}
-      }
-
-      return data;
-    }],
-    timeout: 0,
-    xsrfCookieName: 'XSRF-TOKEN',
-    xsrfHeaderName: 'X-XSRF-TOKEN',
-    maxContentLength: -1,
-    validateStatus: function validateStatus(status) {
-      return status >= 200 && status < 300;
-    }
-  };
-  defaults.headers = {
-    common: {
-      'Accept': 'application/json, text/plain, */*'
-    }
-  };
-  utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-    defaults.headers[method] = {};
-  });
-  utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-    defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-  });
-  module.exports = defaults;
-},563,[559,564,565,565],"axios/lib/defaults.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var utils = require(_dependencyMap[0], '../utils');
-
-  module.exports = function normalizeHeaderName(headers, normalizedName) {
-    utils.forEach(headers, function processHeader(value, name) {
-      if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
-        headers[normalizedName] = value;
-        delete headers[name];
-      }
-    });
-  };
-},564,[559],"axios/lib/helpers/normalizeHeaderName.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var utils = require(_dependencyMap[0], './../utils');
-
-  var settle = require(_dependencyMap[1], './../core/settle');
-
-  var buildURL = require(_dependencyMap[2], './../helpers/buildURL');
-
-  var parseHeaders = require(_dependencyMap[3], './../helpers/parseHeaders');
-
-  var isURLSameOrigin = require(_dependencyMap[4], './../helpers/isURLSameOrigin');
-
-  var createError = require(_dependencyMap[5], '../core/createError');
-
-  var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || require(_dependencyMap[6], './../helpers/btoa');
-
-  module.exports = function xhrAdapter(config) {
-    return new Promise(function dispatchXhrRequest(resolve, reject) {
-      var requestData = config.data;
-      var requestHeaders = config.headers;
-
-      if (utils.isFormData(requestData)) {
-        delete requestHeaders['Content-Type'];
-      }
-
-      var request = new XMLHttpRequest();
-      var loadEvent = 'onreadystatechange';
-      var xDomain = false;
-
-      if (process.env.NODE_ENV !== 'test' && typeof window !== 'undefined' && window.XDomainRequest && !('withCredentials' in request) && !isURLSameOrigin(config.url)) {
-        request = new window.XDomainRequest();
-        loadEvent = 'onload';
-        xDomain = true;
-
-        request.onprogress = function handleProgress() {};
-
-        request.ontimeout = function handleTimeout() {};
-      }
-
-      if (config.auth) {
-        var username = config.auth.username || '';
-        var password = config.auth.password || '';
-        requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
-      }
-
-      request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
-      request.timeout = config.timeout;
-
-      request[loadEvent] = function handleLoad() {
-        if (!request || request.readyState !== 4 && !xDomain) {
-          return;
-        }
-
-        if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
-          return;
-        }
-
-        var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
-        var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
-        var response = {
-          data: responseData,
-          status: request.status === 1223 ? 204 : request.status,
-          statusText: request.status === 1223 ? 'No Content' : request.statusText,
-          headers: responseHeaders,
-          config: config,
-          request: request
-        };
-        settle(resolve, reject, response);
-        request = null;
-      };
-
-      request.onerror = function handleError() {
-        reject(createError('Network Error', config, null, request));
-        request = null;
-      };
-
-      request.ontimeout = function handleTimeout() {
-        reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED', request));
-        request = null;
-      };
-
-      if (utils.isStandardBrowserEnv()) {
-        var cookies = require(_dependencyMap[7], './../helpers/cookies');
-
-        var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ? cookies.read(config.xsrfCookieName) : undefined;
-
-        if (xsrfValue) {
-          requestHeaders[config.xsrfHeaderName] = xsrfValue;
-        }
-      }
-
-      if ('setRequestHeader' in request) {
-        utils.forEach(requestHeaders, function setRequestHeader(val, key) {
-          if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
-            delete requestHeaders[key];
-          } else {
-            request.setRequestHeader(key, val);
-          }
-        });
-      }
-
-      if (config.withCredentials) {
-        request.withCredentials = true;
-      }
-
-      if (config.responseType) {
-        try {
-          request.responseType = config.responseType;
-        } catch (e) {
-          if (config.responseType !== 'json') {
-            throw e;
-          }
-        }
-      }
-
-      if (typeof config.onDownloadProgress === 'function') {
-        request.addEventListener('progress', config.onDownloadProgress);
-      }
-
-      if (typeof config.onUploadProgress === 'function' && request.upload) {
-        request.upload.addEventListener('progress', config.onUploadProgress);
-      }
-
-      if (config.cancelToken) {
-        config.cancelToken.promise.then(function onCanceled(cancel) {
-          if (!request) {
-            return;
-          }
-
-          request.abort();
-          reject(cancel);
-          request = null;
-        });
-      }
-
-      if (requestData === undefined) {
-        requestData = null;
-      }
-
-      request.send(requestData);
-    });
-  };
-},565,[559,566,569,570,571,567,572,573],"axios/lib/adapters/xhr.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var createError = require(_dependencyMap[0], './createError');
-
-  module.exports = function settle(resolve, reject, response) {
-    var validateStatus = response.config.validateStatus;
-
-    if (!response.status || !validateStatus || validateStatus(response.status)) {
-      resolve(response);
-    } else {
-      reject(createError('Request failed with status code ' + response.status, response.config, null, response.request, response));
-    }
-  };
-},566,[567],"axios/lib/core/settle.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var enhanceError = require(_dependencyMap[0], './enhanceError');
-
-  module.exports = function createError(message, config, code, request, response) {
-    var error = new Error(message);
-    return enhanceError(error, config, code, request, response);
-  };
-},567,[568],"axios/lib/core/createError.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  module.exports = function enhanceError(error, config, code, request, response) {
-    error.config = config;
-
-    if (code) {
-      error.code = code;
-    }
-
-    error.request = request;
-    error.response = response;
-    return error;
-  };
-},568,[],"axios/lib/core/enhanceError.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var utils = require(_dependencyMap[0], './../utils');
-
-  function encode(val) {
-    return encodeURIComponent(val).replace(/%40/gi, '@').replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',').replace(/%20/g, '+').replace(/%5B/gi, '[').replace(/%5D/gi, ']');
-  }
-
-  module.exports = function buildURL(url, params, paramsSerializer) {
-    if (!params) {
-      return url;
-    }
-
-    var serializedParams;
-
-    if (paramsSerializer) {
-      serializedParams = paramsSerializer(params);
-    } else if (utils.isURLSearchParams(params)) {
-      serializedParams = params.toString();
-    } else {
-      var parts = [];
-      utils.forEach(params, function serialize(val, key) {
-        if (val === null || typeof val === 'undefined') {
-          return;
-        }
-
-        if (utils.isArray(val)) {
-          key = key + '[]';
-        }
-
-        if (!utils.isArray(val)) {
-          val = [val];
-        }
-
-        utils.forEach(val, function parseValue(v) {
-          if (utils.isDate(v)) {
-            v = v.toISOString();
-          } else if (utils.isObject(v)) {
-            v = JSON.stringify(v);
-          }
-
-          parts.push(encode(key) + '=' + encode(v));
-        });
-      });
-      serializedParams = parts.join('&');
-    }
-
-    if (serializedParams) {
-      url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
-    }
-
-    return url;
-  };
-},569,[559],"axios/lib/helpers/buildURL.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var utils = require(_dependencyMap[0], './../utils');
-
-  var ignoreDuplicateOf = ['age', 'authorization', 'content-length', 'content-type', 'etag', 'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since', 'last-modified', 'location', 'max-forwards', 'proxy-authorization', 'referer', 'retry-after', 'user-agent'];
-
-  module.exports = function parseHeaders(headers) {
-    var parsed = {};
-    var key;
-    var val;
-    var i;
-
-    if (!headers) {
-      return parsed;
-    }
-
-    utils.forEach(headers.split('\n'), function parser(line) {
-      i = line.indexOf(':');
-      key = utils.trim(line.substr(0, i)).toLowerCase();
-      val = utils.trim(line.substr(i + 1));
-
-      if (key) {
-        if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
-          return;
-        }
-
-        if (key === 'set-cookie') {
-          parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
-        } else {
-          parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
-        }
-      }
-    });
-    return parsed;
-  };
-},570,[559],"axios/lib/helpers/parseHeaders.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var utils = require(_dependencyMap[0], './../utils');
-
-  module.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
-    var msie = /(msie|trident)/i.test(navigator.userAgent);
-    var urlParsingNode = document.createElement('a');
-    var originURL;
-
-    function resolveURL(url) {
-      var href = url;
-
-      if (msie) {
-        urlParsingNode.setAttribute('href', href);
-        href = urlParsingNode.href;
-      }
-
-      urlParsingNode.setAttribute('href', href);
-      return {
-        href: urlParsingNode.href,
-        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
-        host: urlParsingNode.host,
-        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
-        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
-        hostname: urlParsingNode.hostname,
-        port: urlParsingNode.port,
-        pathname: urlParsingNode.pathname.charAt(0) === '/' ? urlParsingNode.pathname : '/' + urlParsingNode.pathname
-      };
-    }
-
-    originURL = resolveURL(window.location.href);
-    return function isURLSameOrigin(requestURL) {
-      var parsed = utils.isString(requestURL) ? resolveURL(requestURL) : requestURL;
-      return parsed.protocol === originURL.protocol && parsed.host === originURL.host;
-    };
-  }() : function nonStandardBrowserEnv() {
-    return function isURLSameOrigin() {
-      return true;
-    };
-  }();
-},571,[559],"axios/lib/helpers/isURLSameOrigin.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-
-  function E() {
-    this.message = 'String contains an invalid character';
-  }
-
-  E.prototype = new Error();
-  E.prototype.code = 5;
-  E.prototype.name = 'InvalidCharacterError';
-
-  function btoa(input) {
-    var str = String(input);
-    var output = '';
-
-    for (var block, charCode, idx = 0, map = chars; str.charAt(idx | 0) || (map = '=', idx % 1); output += map.charAt(63 & block >> 8 - idx % 1 * 8)) {
-      charCode = str.charCodeAt(idx += 3 / 4);
-
-      if (charCode > 0xFF) {
-        throw new E();
-      }
-
-      block = block << 8 | charCode;
-    }
-
-    return output;
-  }
-
-  module.exports = btoa;
-},572,[],"axios/lib/helpers/btoa.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var utils = require(_dependencyMap[0], './../utils');
-
-  module.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
-    return {
-      write: function write(name, value, expires, path, domain, secure) {
-        var cookie = [];
-        cookie.push(name + '=' + encodeURIComponent(value));
-
-        if (utils.isNumber(expires)) {
-          cookie.push('expires=' + new Date(expires).toGMTString());
-        }
-
-        if (utils.isString(path)) {
-          cookie.push('path=' + path);
-        }
-
-        if (utils.isString(domain)) {
-          cookie.push('domain=' + domain);
-        }
-
-        if (secure === true) {
-          cookie.push('secure');
-        }
-
-        document.cookie = cookie.join('; ');
-      },
-      read: function read(name) {
-        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
-        return match ? decodeURIComponent(match[3]) : null;
-      },
-      remove: function remove(name) {
-        this.write(name, '', Date.now() - 86400000);
-      }
-    };
-  }() : function nonStandardBrowserEnv() {
-    return {
-      write: function write() {},
-      read: function read() {
-        return null;
-      },
-      remove: function remove() {}
-    };
-  }();
-},573,[559],"axios/lib/helpers/cookies.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var utils = require(_dependencyMap[0], './../utils');
-
-  function InterceptorManager() {
-    this.handlers = [];
-  }
-
-  InterceptorManager.prototype.use = function use(fulfilled, rejected) {
-    this.handlers.push({
-      fulfilled: fulfilled,
-      rejected: rejected
-    });
-    return this.handlers.length - 1;
-  };
-
-  InterceptorManager.prototype.eject = function eject(id) {
-    if (this.handlers[id]) {
-      this.handlers[id] = null;
-    }
-  };
-
-  InterceptorManager.prototype.forEach = function forEach(fn) {
-    utils.forEach(this.handlers, function forEachHandler(h) {
-      if (h !== null) {
-        fn(h);
-      }
-    });
-  };
-
-  module.exports = InterceptorManager;
-},574,[559],"axios/lib/core/InterceptorManager.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var utils = require(_dependencyMap[0], './../utils');
-
-  var transformData = require(_dependencyMap[1], './transformData');
-
-  var isCancel = require(_dependencyMap[2], '../cancel/isCancel');
-
-  var defaults = require(_dependencyMap[3], '../defaults');
-
-  var isAbsoluteURL = require(_dependencyMap[4], './../helpers/isAbsoluteURL');
-
-  var combineURLs = require(_dependencyMap[5], './../helpers/combineURLs');
-
-  function throwIfCancellationRequested(config) {
-    if (config.cancelToken) {
-      config.cancelToken.throwIfRequested();
-    }
-  }
-
-  module.exports = function dispatchRequest(config) {
-    throwIfCancellationRequested(config);
-
-    if (config.baseURL && !isAbsoluteURL(config.url)) {
-      config.url = combineURLs(config.baseURL, config.url);
-    }
-
-    config.headers = config.headers || {};
-    config.data = transformData(config.data, config.headers, config.transformRequest);
-    config.headers = utils.merge(config.headers.common || {}, config.headers[config.method] || {}, config.headers || {});
-    utils.forEach(['delete', 'get', 'head', 'post', 'put', 'patch', 'common'], function cleanHeaderConfig(method) {
-      delete config.headers[method];
-    });
-    var adapter = config.adapter || defaults.adapter;
-    return adapter(config).then(function onAdapterResolution(response) {
-      throwIfCancellationRequested(config);
-      response.data = transformData(response.data, response.headers, config.transformResponse);
-      return response;
-    }, function onAdapterRejection(reason) {
-      if (!isCancel(reason)) {
-        throwIfCancellationRequested(config);
-
-        if (reason && reason.response) {
-          reason.response.data = transformData(reason.response.data, reason.response.headers, config.transformResponse);
-        }
-      }
-
-      return Promise.reject(reason);
-    });
-  };
-},575,[559,576,577,563,578,579],"axios/lib/core/dispatchRequest.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var utils = require(_dependencyMap[0], './../utils');
-
-  module.exports = function transformData(data, headers, fns) {
-    utils.forEach(fns, function transform(fn) {
-      data = fn(data, headers);
-    });
-    return data;
-  };
-},576,[559],"axios/lib/core/transformData.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  module.exports = function isCancel(value) {
-    return !!(value && value.__CANCEL__);
-  };
-},577,[],"axios/lib/cancel/isCancel.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  module.exports = function isAbsoluteURL(url) {
-    return (/^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url)
-    );
-  };
-},578,[],"axios/lib/helpers/isAbsoluteURL.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  module.exports = function combineURLs(baseURL, relativeURL) {
-    return relativeURL ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL;
-  };
-},579,[],"axios/lib/helpers/combineURLs.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  function Cancel(message) {
-    this.message = message;
-  }
-
-  Cancel.prototype.toString = function toString() {
-    return 'Cancel' + (this.message ? ': ' + this.message : '');
-  };
-
-  Cancel.prototype.__CANCEL__ = true;
-  module.exports = Cancel;
-},580,[],"axios/lib/cancel/Cancel.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  var Cancel = require(_dependencyMap[0], './Cancel');
-
-  function CancelToken(executor) {
-    if (typeof executor !== 'function') {
-      throw new TypeError('executor must be a function.');
-    }
-
-    var resolvePromise;
-    this.promise = new Promise(function promiseExecutor(resolve) {
-      resolvePromise = resolve;
-    });
-    var token = this;
-    executor(function cancel(message) {
-      if (token.reason) {
-        return;
-      }
-
-      token.reason = new Cancel(message);
-      resolvePromise(token.reason);
-    });
-  }
-
-  CancelToken.prototype.throwIfRequested = function throwIfRequested() {
-    if (this.reason) {
-      throw this.reason;
-    }
-  };
-
-  CancelToken.source = function source() {
-    var cancel;
-    var token = new CancelToken(function executor(c) {
-      cancel = c;
-    });
-    return {
-      token: token,
-      cancel: cancel
-    };
-  };
-
-  module.exports = CancelToken;
-},581,[580],"axios/lib/cancel/CancelToken.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  'use strict';
-
-  module.exports = function spread(callback) {
-    return function wrap(arr) {
-      return callback.apply(null, arr);
-    };
-  };
-},582,[],"axios/lib/helpers/spread.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  var host = exports.host = "api.51bakery.com";
-},583,[],"app-config");
-__d(function (global, require, module, exports, _dependencyMap) {
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-
-    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-    var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-    var _baseServiceRequest2 = require(_dependencyMap[0], "base-service-request");
-
-    var _baseServiceRequest3 = _interopRequireDefault(_baseServiceRequest2);
-
-    var _httpModuleType = require(_dependencyMap[1], "http-module-type");
-
-    var _httpModuleType2 = _interopRequireDefault(_httpModuleType);
-
-    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-    var UserLoginRequest = function (_baseServiceRequest) {
-        _inherits(UserLoginRequest, _baseServiceRequest);
-
-        function UserLoginRequest(username, password) {
-            _classCallCheck(this, UserLoginRequest);
-
-            var _this = _possibleConstructorReturn(this, (UserLoginRequest.__proto__ || Object.getPrototypeOf(UserLoginRequest)).call(this));
-
-            _get(UserLoginRequest.prototype.__proto__ || Object.getPrototypeOf(UserLoginRequest.prototype), "addRequestUri", _this).call(_this, "index/user/login");
-
-            _get(UserLoginRequest.prototype.__proto__ || Object.getPrototypeOf(UserLoginRequest.prototype), "addRequestParameter", _this).call(_this, "username", username);
-
-            _get(UserLoginRequest.prototype.__proto__ || Object.getPrototypeOf(UserLoginRequest.prototype), "addRequestParameter", _this).call(_this, "password", password);
-
-            _get(UserLoginRequest.prototype.__proto__ || Object.getPrototypeOf(UserLoginRequest.prototype), "addPathParameter", _this).call(_this, "index.php");
-
-            _this._methodType = _httpModuleType2.default.POST;
-            return _this;
-        }
-
-        _createClass(UserLoginRequest, [{
-            key: "getMethod",
-            value: function getMethod() {
-                return this._methodType;
-            }
-        }]);
-
-        return UserLoginRequest;
-    }(_baseServiceRequest3.default);
-
-    exports.default = UserLoginRequest;
-},584,[585,586],"puffmobile/src/services/request/user-login-request.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-
-    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-    var BaseServiceRequest = function () {
-        function BaseServiceRequest() {
-            _classCallCheck(this, BaseServiceRequest);
-
-            this._requestCommandsParams = [];
-            this._postParamValuesDict = [];
-            this._requestUri = '';
-            this._requestContent;
-        }
-
-        _createClass(BaseServiceRequest, [{
-            key: "getMethod",
-            value: function getMethod() {
-                return;
-            }
-        }, {
-            key: "getRequestUri",
-            value: function getRequestUri() {
-                return this.getUri();
-            }
-        }, {
-            key: "getMessageName",
-            value: function getMessageName() {
-                return;
-            }
-        }, {
-            key: "getRequiredSecured",
-            value: function getRequiredSecured() {
-                return false;
-            }
-        }, {
-            key: "addRequestParameter",
-            value: function addRequestParameter(paramName, value) {
-                if (paramName) {
-                    this._postParamValuesDict.push({
-                        key: paramName,
-                        value: value
-                    });
-                }
-            }
-        }, {
-            key: "addRequestUri",
-            value: function addRequestUri(uri) {
-                this._requestUri = uri;
-            }
-        }, {
-            key: "addPathParameter",
-            value: function addPathParameter(value) {
-                this._requestCommandsParams.push(this.htmlEnc(value));
-            }
-        }, {
-            key: "getUri",
-            value: function getUri() {
-                var retValue = void 0;
-
-                var reqParams = this._requestCommandsParams.join('/');
-
-                if (reqParams) {
-                    retValue = reqParams + "/" + this._requestUri;
-                } else {
-                    retValue = this._requestUri;
-                }
-
-                return retValue;
-            }
-        }, {
-            key: "getParamaterString",
-            value: function getParamaterString() {
-                var parameters = [];
-
-                for (var index = 0; index < this._postParamValuesDict.length; index++) {
-                    parameters.push(this._postParamValuesDict[index].key + "=" + this._postParamValuesDict[index].value);
-                }
-
-                return parameters.join('&');
-            }
-        }, {
-            key: "getParametersObject",
-            value: function getParametersObject() {
-                var parameters = [];
-
-                for (var index = 0; index < this._postParamValuesDict.length; index++) {
-                    parameters[this._postParamValuesDict[index].key] = this._postParamValuesDict[index].value;
-                }
-
-                return _extends({}, parameters);
-            }
-        }, {
-            key: "getContent",
-            value: function getContent() {
-                return this._requestContent;
-            }
-        }, {
-            key: "setContent",
-            value: function setContent(reqData) {
-                this._requestContent = reqData;
-            }
-        }, {
-            key: "htmlEnc",
-            value: function htmlEnc(s) {
-                return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, '&#39;').replace(/"/g, '&#34;');
-            }
-        }]);
-
-        return BaseServiceRequest;
-    }();
-
-    exports.default = BaseServiceRequest;
-},585,[],"base-service-request");
-__d(function (global, require, module, exports, _dependencyMap) {
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-    var HttpMethodType = {
-        GET: 'GET',
-        POST: 'POST',
-        PUT: 'PUT',
-        DELETE: 'DELETE'
-    };
-    exports.default = HttpMethodType;
-},586,[],"http-module-type");
-__d(function (global, require, module, exports, _dependencyMap) {
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-
-    var _react2 = require(_dependencyMap[0], "react");
-
-    var _react3 = _interopRequireDefault(_react2);
-
-    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
-
-    var _index2 = _interopRequireDefault(_index);
-
-    var _jsxFileName = "d:\\SourceCode\\ReactJS\\PuffMobile\\src\\components\\userlist-component.js";
-
-    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-    var _reactNative = require(_dependencyMap[2], "react-native");
-
-    var _reactRedux = require(_dependencyMap[3], "react-redux");
-
-    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-    var _components = {
-        UserList: {
-            displayName: "UserList"
-        }
-    };
-
-    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-        filename: "d:/SourceCode/ReactJS/PuffMobile/src/components/userlist-component.js",
-        components: _components,
-        locals: [module],
-        imports: [_react3.default]
-    });
-
-    function _wrapComponent(id) {
-        return function (Component) {
-            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
-        };
-    }
-
-    var UserList = _wrapComponent("UserList")(function (_Component) {
-        _inherits(UserList, _Component);
-
-        function UserList(props) {
-            _classCallCheck(this, UserList);
-
-            return _possibleConstructorReturn(this, (UserList.__proto__ || Object.getPrototypeOf(UserList)).call(this, props));
-        }
-
-        _createClass(UserList, [{
-            key: "render",
-            value: function render() {
-                console.log("UserList组件刷新.");
-                return _react3.default.createElement(
-                    _reactNative.View,
-                    {
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 12
-                        }
-                    },
-                    _react3.default.createElement(
-                        _reactNative.Text,
-                        {
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 13
-                            }
-                        },
-                        "I am the component"
-                    )
-                );
-            }
-        }]);
-
-        return UserList;
-    }(_react2.Component));
-
-    exports.default = UserList;
-},587,[108,175,12,488],"puffmobile/src/components/userlist-component.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-
-    var _react2 = require(_dependencyMap[0], "react");
-
-    var _react3 = _interopRequireDefault(_react2);
-
-    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
-
-    var _index2 = _interopRequireDefault(_index);
-
-    var _jsxFileName = "d:\\SourceCode\\ReactJS\\PuffMobile\\src\\components\\login-component.js";
-
-    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-    var _reactNative = require(_dependencyMap[2], "react-native");
-
-    var _baseStyle = require(_dependencyMap[3], "../styles/base-style");
-
-    var _loginStyle = require(_dependencyMap[4], "../styles/login-style");
-
-    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-    var _components = {
-        Login: {
-            displayName: "Login"
-        }
-    };
-
-    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-        filename: "d:/SourceCode/ReactJS/PuffMobile/src/components/login-component.js",
-        components: _components,
-        locals: [module],
-        imports: [_react3.default]
-    });
-
-    function _wrapComponent(id) {
-        return function (Component) {
-            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
-        };
-    }
-
-    var Login = _wrapComponent("Login")(function (_Component) {
-        _inherits(Login, _Component);
-
-        function Login(props) {
-            _classCallCheck(this, Login);
-
-            var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
-
-            _this.onLogin = function () {};
-
-            return _this;
-        }
-
-        _createClass(Login, [{
-            key: "render",
-            value: function render() {
-                return _react3.default.createElement(
-                    _reactNative.View,
-                    {
-                        style: _loginStyle.LoginStyles.container,
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 18
-                        }
-                    },
-                    _react3.default.createElement(
-                        _reactNative.View,
-                        {
-                            style: _loginStyle.LoginStyles.topContainer,
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 19
-                            }
-                        },
-                        _react3.default.createElement(
-                            _reactNative.Text,
-                            {
-                                __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 20
-                                }
-                            },
-                            "I am the top"
-                        )
-                    ),
-                    _react3.default.createElement(
-                        _reactNative.View,
-                        {
-                            style: _loginStyle.LoginStyles.bottomContainer,
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 22
-                            }
-                        },
-                        _react3.default.createElement(_reactNative.TextInput, {
-                            style: _loginStyle.LoginStyles.loginInput,
-                            placeholder: "Username",
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 23
-                            }
-                        }),
-                        _react3.default.createElement(_reactNative.TextInput, {
-                            style: _loginStyle.LoginStyles.loginInput,
-                            secureTextEntry: true,
-                            placeholder: "password",
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 24
-                            }
-                        }),
-                        _react3.default.createElement(
-                            _reactNative.View,
-                            {
-                                style: {
-                                    width: "80%",
-                                    alignSelf: "center"
-                                },
-                                __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 25
-                                }
-                            },
-                            _react3.default.createElement(_reactNative.Button, {
-                                style: _loginStyle.LoginStyles.loginInput,
-                                onPress: this.onLogin,
-                                title: "Submit",
-                                __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 26
-                                }
-                            })
-                        )
-                    )
-                );
-            }
-        }]);
-
-        return Login;
-    }(_react2.Component));
-
-    exports.default = Login;
-},589,[108,175,12,607,590],"puffmobile/src/components/login-component.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-    exports.LoginStyles = undefined;
+    exports.BaseStyles = undefined;
 
     var _reactNativeExtendedStylesheet = require(_dependencyMap[0], "react-native-extended-stylesheet");
 
@@ -65979,39 +64256,23 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-    var LoginStyles = exports.LoginStyles = _reactNativeExtendedStylesheet2.default.create({
+    _reactNativeExtendedStylesheet2.default.build({
+        $medium: 16,
+        $small: 14,
+        $xsmall: 12,
+        $borderColor: '#979799',
+        $background: '#ccc'
+    });
+
+    var BaseStyles = exports.BaseStyles = _reactNativeExtendedStylesheet2.default.create({
         container: {
             flex: 1,
-            backgroundColor: "red"
-        },
-        topContainer: {
-            flex: 1,
-            backgroundColor: 'powderblue'
-        },
-        bottomContainer: {
-            flex: 2,
-            backgroundColor: 'skyblue',
-            width: "100%",
-            flexDirection: 'column'
-        },
-        loginInput: {
-            width: "80%",
-            height: 30,
-            fontSize: '$small',
-            paddingVertical: 0,
-            alignSelf: "center"
-        },
-        loginButton: {
-            width: "80%",
-            color: "#32a7f5",
-            alignSelf: "center"
-        },
-        loginButtonText: {
-            fontSize: 20,
-            color: 'white'
+            backgroundColor: '$background',
+            alignItems: 'center',
+            justifyContent: 'center'
         }
     });
-},590,[591],"puffmobile/src/styles/login-style.js");
+},554,[555],"base-style");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -66024,7 +64285,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
   exports.default = new _api2.default();
-},591,[592],"react-native-extended-stylesheet/src/index.js");
+},555,[556],"react-native-extended-stylesheet/src/index.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -66190,7 +64451,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }();
 
   exports.default = EStyleSheet;
-},592,[12,593,594,601,595,598,606],"react-native-extended-stylesheet/src/api.js");
+},556,[12,557,558,565,559,562,570],"react-native-extended-stylesheet/src/api.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -66375,7 +64636,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }();
 
   exports.default = _default;
-},593,[12,594,600,595,598],"react-native-extended-stylesheet/src/sheet.js");
+},557,[12,558,564,559,562],"react-native-extended-stylesheet/src/sheet.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -66482,7 +64743,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     var index = Math.round(Math.random() * (colors.length - 1));
     return colors[index];
   }
-},594,[595,598,601,600],"react-native-extended-stylesheet/src/style.js");
+},558,[559,562,565,564],"react-native-extended-stylesheet/src/style.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -66555,7 +64816,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       }
     }
   }
-},595,[596],"react-native-extended-stylesheet/src/replacers/vars.js");
+},559,[560],"react-native-extended-stylesheet/src/replacers/vars.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   var Path = require(_dependencyMap[0], './path');
 
@@ -66576,7 +64837,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     return pathObj.getValueFrom(o);
   };
-},596,[597],"object-resolve-path/object-resolve-path.js");
+},560,[561],"object-resolve-path/object-resolve-path.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   function noop() {}
 
@@ -66892,7 +65153,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   invalidPath.getValueFrom = invalidPath.setValueFrom = function () {};
 
   module.exports = Path;
-},597,[],"object-resolve-path/path.js");
+},561,[],"object-resolve-path/path.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -66971,7 +65232,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       }
     });
   }
-},598,[12,599,600],"react-native-extended-stylesheet/src/replacers/media-queries.js");
+},562,[12,563,564],"react-native-extended-stylesheet/src/replacers/media-queries.js");
 __d(function (global, require, module, exports, _dependencyMap) {
     'use strict';
 
@@ -67133,7 +65394,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                 return value;
         }
     }
-},599,[],"css-mediaquery/index.js");
+},563,[],"css-mediaquery/index.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -67157,7 +65418,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   function isObject(obj) {
     return typeof obj === 'object' && obj !== null;
   }
-},600,[],"react-native-extended-stylesheet/src/utils.js");
+},564,[],"react-native-extended-stylesheet/src/utils.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -67353,7 +65614,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }();
 
   exports.default = Value;
-},601,[602,595,603,604,605],"react-native-extended-stylesheet/src/value.js");
+},565,[566,559,567,568,569],"react-native-extended-stylesheet/src/value.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -67380,7 +65641,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     return rem * koef;
   }
-},602,[],"react-native-extended-stylesheet/src/replacers/rem.js");
+},566,[],"react-native-extended-stylesheet/src/replacers/rem.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -67428,7 +65689,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     throw new Error(invalidPropMsg);
   }
-},603,[12],"react-native-extended-stylesheet/src/replacers/percent.js");
+},567,[12],"react-native-extended-stylesheet/src/replacers/percent.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -67508,7 +65769,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       throw new Error('Operation divisor should not be zero');
     }
   }
-},604,[],"react-native-extended-stylesheet/src/replacers/operation.js");
+},568,[],"react-native-extended-stylesheet/src/replacers/operation.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -67545,7 +65806,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       return prop.indexOf(p) >= 0;
     });
   }
-},605,[],"react-native-extended-stylesheet/src/replacers/scale.js");
+},569,[],"react-native-extended-stylesheet/src/replacers/scale.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -67573,12 +65834,1816 @@ __d(function (global, require, module, exports, _dependencyMap) {
   function isNumber(value) {
     return typeof value === 'number';
   }
-},606,[],"react-native-extended-stylesheet/src/child.js");
+},570,[],"react-native-extended-stylesheet/src/child.js");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.BaseStyles = undefined;
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+    var _jsxFileName = "d:\\SourceCode\\ReactJS\\PuffMobile\\src\\container\\user-container.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _reactRedux = require(_dependencyMap[3], "react-redux");
+
+    var _userActions = require(_dependencyMap[4], "../actions/user-actions");
+
+    var UserActions = _interopRequireWildcard(_userActions);
+
+    var _restfulApi = require(_dependencyMap[5], "restful-api");
+
+    var _restfulApi2 = _interopRequireDefault(_restfulApi);
+
+    var _userLoginRequest = require(_dependencyMap[6], "../services/request/user-login-request");
+
+    var _userLoginRequest2 = _interopRequireDefault(_userLoginRequest);
+
+    var _userlistComponent = require(_dependencyMap[7], "../components/userlist-component");
+
+    var _userlistComponent2 = _interopRequireDefault(_userlistComponent);
+
+    function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        UserContainer: {
+            displayName: "UserContainer"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "d:/SourceCode/ReactJS/PuffMobile/src/container/user-container.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var UserContainer = _wrapComponent("UserContainer")(function (_Component) {
+        _inherits(UserContainer, _Component);
+
+        function UserContainer(props) {
+            _classCallCheck(this, UserContainer);
+
+            var _this = _possibleConstructorReturn(this, (UserContainer.__proto__ || Object.getPrototypeOf(UserContainer)).call(this, props));
+
+            _this.state = {
+                users: [{
+                    username: "aaa"
+                }, {
+                    username: "zzzz"
+                }]
+            };
+            return _this;
+        }
+
+        _createClass(UserContainer, [{
+            key: "componentWillReceiveProps",
+            value: function componentWillReceiveProps(nextProps) {}
+        }, {
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 28
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 29
+                            }
+                        },
+                        "FB, AAPL"
+                    ),
+                    _react3.default.createElement(_userlistComponent2.default, {
+                        users: this.state.users,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 31
+                        }
+                    })
+                );
+            }
+        }]);
+
+        return UserContainer;
+    }(_react2.Component));
+
+    function mapStateToProps(state) {
+        console.log("状态被映射到组件prop上.");
+        return {
+            user: state.user
+        };
+    }
+
+    var actionCreators = _extends({}, UserActions);
+
+    UserContainer = (0, _reactRedux.connect)(mapStateToProps, actionCreators)(UserContainer);
+    exports.default = UserContainer;
+},571,[108,175,12,488,572,573,601,604],"puffmobile/src/container/user-container.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.onLogin = onLogin;
+    exports.onLogOff = onLogOff;
+
+    var _userActionTypes = require(_dependencyMap[0], "user-action-types");
+
+    var _restfulApi = require(_dependencyMap[1], "restful-api");
+
+    var _restfulApi2 = _interopRequireDefault(_restfulApi);
+
+    var _userLoginRequest = require(_dependencyMap[2], "../services/request/user-login-request");
+
+    var _userLoginRequest2 = _interopRequireDefault(_userLoginRequest);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function onLogin(username, password) {
+        var _this = this;
+
+        console.log("actions\u5185\u7684onLogin\u88AB\u6267\u884C, \u53C2\u6570username: " + username + ", password: " + password);
+        return function _callee(dispatch, getState) {
+            var request, response, token, isLoggedIn;
+            return regeneratorRuntime.async(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            request = new _userLoginRequest2.default(username, password);
+                            _context.next = 3;
+                            return regeneratorRuntime.awrap(_restfulApi2.default.processServiceCall(request));
+
+                        case 3:
+                            response = _context.sent;
+                            token = "";
+                            isLoggedIn = false;
+
+                            if (response.result) {
+                                token = response.data;
+                                isLoggedIn = true;
+                            }
+
+                            dispatch({
+                                type: _userActionTypes.UserConstant.ActionTypes.LOGIN,
+                                data: {
+                                    username: username,
+                                    isLoggedIn: isLoggedIn,
+                                    token: token
+                                }
+                            });
+
+                        case 8:
+                        case "end":
+                            return _context.stop();
+                    }
+                }
+            }, null, _this);
+        };
+    }
+
+    function onLogOff(username) {
+        return function (dispatch) {
+            dispatch({
+                type: _userActionTypes.UserConstant.ActionTypes.LOGOUT,
+                data: {
+                    username: username,
+                    password: password
+                }
+            });
+        };
+    }
+},572,[521,573,601],"puffmobile/src/actions/user-actions.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _axios = require(_dependencyMap[0], "axios");
+
+    var _axios2 = _interopRequireDefault(_axios);
+
+    var _appConfig = require(_dependencyMap[1], "app-config");
+
+    var appConfig = _interopRequireWildcard(_appConfig);
+
+    function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    var RestfulAPI = function () {
+        function RestfulAPI() {
+            _classCallCheck(this, RestfulAPI);
+        }
+
+        _createClass(RestfulAPI, [{
+            key: "processServiceCall",
+            value: function processServiceCall(req) {
+                var url, method, data, start, response, millis;
+                return regeneratorRuntime.async(function processServiceCall$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                url = this.getRequestUrl(req);
+                                method = req.getMethod();
+                                data = req.getParametersObject();
+                                console.log("Requested method: " + method + ", URL: " + url);
+                                start = Date.now();
+                                _context.next = 7;
+                                return regeneratorRuntime.awrap((0, _axios2.default)({
+                                    method: method,
+                                    url: url,
+                                    data: req.getParametersObject(),
+                                    responseType: 'json'
+                                }));
+
+                            case 7:
+                                response = _context.sent;
+                                millis = Date.now() - start;
+                                console.log("Request elapsed " + Math.floor(millis / 1000));
+                                return _context.abrupt("return", response.data);
+
+                            case 11:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, null, this);
+            }
+        }, {
+            key: "getRequestUrl",
+            value: function getRequestUrl(req) {
+                var serverName = appConfig.host;
+                var uri = req.getRequestUri();
+                var protocol = "http";
+                return protocol + "://" + serverName + "/" + uri;
+                ;
+            }
+        }]);
+
+        return RestfulAPI;
+    }();
+
+    var restfulApi = new RestfulAPI();
+    exports.default = restfulApi;
+},573,[574,600],"restful-api");
+__d(function (global, require, module, exports, _dependencyMap) {
+  module.exports = require(_dependencyMap[0], './lib/axios');
+},574,[575],"axios/index.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var utils = require(_dependencyMap[0], './utils');
+
+  var bind = require(_dependencyMap[1], './helpers/bind');
+
+  var Axios = require(_dependencyMap[2], './core/Axios');
+
+  var defaults = require(_dependencyMap[3], './defaults');
+
+  function createInstance(defaultConfig) {
+    var context = new Axios(defaultConfig);
+    var instance = bind(Axios.prototype.request, context);
+    utils.extend(instance, Axios.prototype, context);
+    utils.extend(instance, context);
+    return instance;
+  }
+
+  var axios = createInstance(defaults);
+  axios.Axios = Axios;
+
+  axios.create = function create(instanceConfig) {
+    return createInstance(utils.merge(defaults, instanceConfig));
+  };
+
+  axios.Cancel = require(_dependencyMap[4], './cancel/Cancel');
+  axios.CancelToken = require(_dependencyMap[5], './cancel/CancelToken');
+  axios.isCancel = require(_dependencyMap[6], './cancel/isCancel');
+
+  axios.all = function all(promises) {
+    return Promise.all(promises);
+  };
+
+  axios.spread = require(_dependencyMap[7], './helpers/spread');
+  module.exports = axios;
+  module.exports.default = axios;
+},575,[576,577,579,580,597,598,594,599],"axios/lib/axios.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var bind = require(_dependencyMap[0], './helpers/bind');
+
+  var isBuffer = require(_dependencyMap[1], 'is-buffer');
+
+  var toString = Object.prototype.toString;
+
+  function isArray(val) {
+    return toString.call(val) === '[object Array]';
+  }
+
+  function isArrayBuffer(val) {
+    return toString.call(val) === '[object ArrayBuffer]';
+  }
+
+  function isFormData(val) {
+    return typeof FormData !== 'undefined' && val instanceof FormData;
+  }
+
+  function isArrayBufferView(val) {
+    var result;
+
+    if (typeof ArrayBuffer !== 'undefined' && ArrayBuffer.isView) {
+      result = ArrayBuffer.isView(val);
+    } else {
+      result = val && val.buffer && val.buffer instanceof ArrayBuffer;
+    }
+
+    return result;
+  }
+
+  function isString(val) {
+    return typeof val === 'string';
+  }
+
+  function isNumber(val) {
+    return typeof val === 'number';
+  }
+
+  function isUndefined(val) {
+    return typeof val === 'undefined';
+  }
+
+  function isObject(val) {
+    return val !== null && typeof val === 'object';
+  }
+
+  function isDate(val) {
+    return toString.call(val) === '[object Date]';
+  }
+
+  function isFile(val) {
+    return toString.call(val) === '[object File]';
+  }
+
+  function isBlob(val) {
+    return toString.call(val) === '[object Blob]';
+  }
+
+  function isFunction(val) {
+    return toString.call(val) === '[object Function]';
+  }
+
+  function isStream(val) {
+    return isObject(val) && isFunction(val.pipe);
+  }
+
+  function isURLSearchParams(val) {
+    return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+  }
+
+  function trim(str) {
+    return str.replace(/^\s*/, '').replace(/\s*$/, '');
+  }
+
+  function isStandardBrowserEnv() {
+    if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+      return false;
+    }
+
+    return typeof window !== 'undefined' && typeof document !== 'undefined';
+  }
+
+  function forEach(obj, fn) {
+    if (obj === null || typeof obj === 'undefined') {
+      return;
+    }
+
+    if (typeof obj !== 'object') {
+      obj = [obj];
+    }
+
+    if (isArray(obj)) {
+      for (var i = 0, l = obj.length; i < l; i++) {
+        fn.call(null, obj[i], i, obj);
+      }
+    } else {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          fn.call(null, obj[key], key, obj);
+        }
+      }
+    }
+  }
+
+  function merge() {
+    var result = {};
+
+    function assignValue(val, key) {
+      if (typeof result[key] === 'object' && typeof val === 'object') {
+        result[key] = merge(result[key], val);
+      } else {
+        result[key] = val;
+      }
+    }
+
+    for (var i = 0, l = arguments.length; i < l; i++) {
+      forEach(arguments[i], assignValue);
+    }
+
+    return result;
+  }
+
+  function extend(a, b, thisArg) {
+    forEach(b, function assignValue(val, key) {
+      if (thisArg && typeof val === 'function') {
+        a[key] = bind(val, thisArg);
+      } else {
+        a[key] = val;
+      }
+    });
+    return a;
+  }
+
+  module.exports = {
+    isArray: isArray,
+    isArrayBuffer: isArrayBuffer,
+    isBuffer: isBuffer,
+    isFormData: isFormData,
+    isArrayBufferView: isArrayBufferView,
+    isString: isString,
+    isNumber: isNumber,
+    isObject: isObject,
+    isUndefined: isUndefined,
+    isDate: isDate,
+    isFile: isFile,
+    isBlob: isBlob,
+    isFunction: isFunction,
+    isStream: isStream,
+    isURLSearchParams: isURLSearchParams,
+    isStandardBrowserEnv: isStandardBrowserEnv,
+    forEach: forEach,
+    merge: merge,
+    extend: extend,
+    trim: trim
+  };
+},576,[577,578],"axios/lib/utils.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  module.exports = function bind(fn, thisArg) {
+    return function wrap() {
+      var args = new Array(arguments.length);
+
+      for (var i = 0; i < args.length; i++) {
+        args[i] = arguments[i];
+      }
+
+      return fn.apply(thisArg, args);
+    };
+  };
+},577,[],"axios/lib/helpers/bind.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  /*!
+   * Determine if an object is a Buffer
+   *
+   * @author   Feross Aboukhadijeh <https://feross.org>
+   * @license  MIT
+   */module.exports = function (obj) {
+    return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer);
+  };
+
+  function isBuffer(obj) {
+    return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj);
+  }
+
+  function isSlowBuffer(obj) {
+    return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0));
+  }
+},578,[],"is-buffer/index.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var defaults = require(_dependencyMap[0], './../defaults');
+
+  var utils = require(_dependencyMap[1], './../utils');
+
+  var InterceptorManager = require(_dependencyMap[2], './InterceptorManager');
+
+  var dispatchRequest = require(_dependencyMap[3], './dispatchRequest');
+
+  function Axios(instanceConfig) {
+    this.defaults = instanceConfig;
+    this.interceptors = {
+      request: new InterceptorManager(),
+      response: new InterceptorManager()
+    };
+  }
+
+  Axios.prototype.request = function request(config) {
+    if (typeof config === 'string') {
+      config = utils.merge({
+        url: arguments[0]
+      }, arguments[1]);
+    }
+
+    config = utils.merge(defaults, this.defaults, {
+      method: 'get'
+    }, config);
+    config.method = config.method.toLowerCase();
+    var chain = [dispatchRequest, undefined];
+    var promise = Promise.resolve(config);
+    this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+      chain.unshift(interceptor.fulfilled, interceptor.rejected);
+    });
+    this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+      chain.push(interceptor.fulfilled, interceptor.rejected);
+    });
+
+    while (chain.length) {
+      promise = promise.then(chain.shift(), chain.shift());
+    }
+
+    return promise;
+  };
+
+  utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
+    Axios.prototype[method] = function (url, config) {
+      return this.request(utils.merge(config || {}, {
+        method: method,
+        url: url
+      }));
+    };
+  });
+  utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+    Axios.prototype[method] = function (url, data, config) {
+      return this.request(utils.merge(config || {}, {
+        method: method,
+        url: url,
+        data: data
+      }));
+    };
+  });
+  module.exports = Axios;
+},579,[580,576,591,592],"axios/lib/core/Axios.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var utils = require(_dependencyMap[0], './utils');
+
+  var normalizeHeaderName = require(_dependencyMap[1], './helpers/normalizeHeaderName');
+
+  var DEFAULT_CONTENT_TYPE = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  };
+
+  function setContentTypeIfUnset(headers, value) {
+    if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+      headers['Content-Type'] = value;
+    }
+  }
+
+  function getDefaultAdapter() {
+    var adapter;
+
+    if (typeof XMLHttpRequest !== 'undefined') {
+      adapter = require(_dependencyMap[2], './adapters/xhr');
+    } else if (typeof process !== 'undefined') {
+      adapter = require(_dependencyMap[3], './adapters/http');
+    }
+
+    return adapter;
+  }
+
+  var defaults = {
+    adapter: getDefaultAdapter(),
+    transformRequest: [function transformRequest(data, headers) {
+      normalizeHeaderName(headers, 'Content-Type');
+
+      if (utils.isFormData(data) || utils.isArrayBuffer(data) || utils.isBuffer(data) || utils.isStream(data) || utils.isFile(data) || utils.isBlob(data)) {
+        return data;
+      }
+
+      if (utils.isArrayBufferView(data)) {
+        return data.buffer;
+      }
+
+      if (utils.isURLSearchParams(data)) {
+        setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+        return data.toString();
+      }
+
+      if (utils.isObject(data)) {
+        setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+        return JSON.stringify(data);
+      }
+
+      return data;
+    }],
+    transformResponse: [function transformResponse(data) {
+      if (typeof data === 'string') {
+        try {
+          data = JSON.parse(data);
+        } catch (e) {}
+      }
+
+      return data;
+    }],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    validateStatus: function validateStatus(status) {
+      return status >= 200 && status < 300;
+    }
+  };
+  defaults.headers = {
+    common: {
+      'Accept': 'application/json, text/plain, */*'
+    }
+  };
+  utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+    defaults.headers[method] = {};
+  });
+  utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+    defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+  });
+  module.exports = defaults;
+},580,[576,581,582,582],"axios/lib/defaults.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var utils = require(_dependencyMap[0], '../utils');
+
+  module.exports = function normalizeHeaderName(headers, normalizedName) {
+    utils.forEach(headers, function processHeader(value, name) {
+      if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
+        headers[normalizedName] = value;
+        delete headers[name];
+      }
+    });
+  };
+},581,[576],"axios/lib/helpers/normalizeHeaderName.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var utils = require(_dependencyMap[0], './../utils');
+
+  var settle = require(_dependencyMap[1], './../core/settle');
+
+  var buildURL = require(_dependencyMap[2], './../helpers/buildURL');
+
+  var parseHeaders = require(_dependencyMap[3], './../helpers/parseHeaders');
+
+  var isURLSameOrigin = require(_dependencyMap[4], './../helpers/isURLSameOrigin');
+
+  var createError = require(_dependencyMap[5], '../core/createError');
+
+  var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || require(_dependencyMap[6], './../helpers/btoa');
+
+  module.exports = function xhrAdapter(config) {
+    return new Promise(function dispatchXhrRequest(resolve, reject) {
+      var requestData = config.data;
+      var requestHeaders = config.headers;
+
+      if (utils.isFormData(requestData)) {
+        delete requestHeaders['Content-Type'];
+      }
+
+      var request = new XMLHttpRequest();
+      var loadEvent = 'onreadystatechange';
+      var xDomain = false;
+
+      if (process.env.NODE_ENV !== 'test' && typeof window !== 'undefined' && window.XDomainRequest && !('withCredentials' in request) && !isURLSameOrigin(config.url)) {
+        request = new window.XDomainRequest();
+        loadEvent = 'onload';
+        xDomain = true;
+
+        request.onprogress = function handleProgress() {};
+
+        request.ontimeout = function handleTimeout() {};
+      }
+
+      if (config.auth) {
+        var username = config.auth.username || '';
+        var password = config.auth.password || '';
+        requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+      }
+
+      request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+      request.timeout = config.timeout;
+
+      request[loadEvent] = function handleLoad() {
+        if (!request || request.readyState !== 4 && !xDomain) {
+          return;
+        }
+
+        if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+          return;
+        }
+
+        var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+        var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+        var response = {
+          data: responseData,
+          status: request.status === 1223 ? 204 : request.status,
+          statusText: request.status === 1223 ? 'No Content' : request.statusText,
+          headers: responseHeaders,
+          config: config,
+          request: request
+        };
+        settle(resolve, reject, response);
+        request = null;
+      };
+
+      request.onerror = function handleError() {
+        reject(createError('Network Error', config, null, request));
+        request = null;
+      };
+
+      request.ontimeout = function handleTimeout() {
+        reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED', request));
+        request = null;
+      };
+
+      if (utils.isStandardBrowserEnv()) {
+        var cookies = require(_dependencyMap[7], './../helpers/cookies');
+
+        var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ? cookies.read(config.xsrfCookieName) : undefined;
+
+        if (xsrfValue) {
+          requestHeaders[config.xsrfHeaderName] = xsrfValue;
+        }
+      }
+
+      if ('setRequestHeader' in request) {
+        utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+          if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+            delete requestHeaders[key];
+          } else {
+            request.setRequestHeader(key, val);
+          }
+        });
+      }
+
+      if (config.withCredentials) {
+        request.withCredentials = true;
+      }
+
+      if (config.responseType) {
+        try {
+          request.responseType = config.responseType;
+        } catch (e) {
+          if (config.responseType !== 'json') {
+            throw e;
+          }
+        }
+      }
+
+      if (typeof config.onDownloadProgress === 'function') {
+        request.addEventListener('progress', config.onDownloadProgress);
+      }
+
+      if (typeof config.onUploadProgress === 'function' && request.upload) {
+        request.upload.addEventListener('progress', config.onUploadProgress);
+      }
+
+      if (config.cancelToken) {
+        config.cancelToken.promise.then(function onCanceled(cancel) {
+          if (!request) {
+            return;
+          }
+
+          request.abort();
+          reject(cancel);
+          request = null;
+        });
+      }
+
+      if (requestData === undefined) {
+        requestData = null;
+      }
+
+      request.send(requestData);
+    });
+  };
+},582,[576,583,586,587,588,584,589,590],"axios/lib/adapters/xhr.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var createError = require(_dependencyMap[0], './createError');
+
+  module.exports = function settle(resolve, reject, response) {
+    var validateStatus = response.config.validateStatus;
+
+    if (!response.status || !validateStatus || validateStatus(response.status)) {
+      resolve(response);
+    } else {
+      reject(createError('Request failed with status code ' + response.status, response.config, null, response.request, response));
+    }
+  };
+},583,[584],"axios/lib/core/settle.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var enhanceError = require(_dependencyMap[0], './enhanceError');
+
+  module.exports = function createError(message, config, code, request, response) {
+    var error = new Error(message);
+    return enhanceError(error, config, code, request, response);
+  };
+},584,[585],"axios/lib/core/createError.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  module.exports = function enhanceError(error, config, code, request, response) {
+    error.config = config;
+
+    if (code) {
+      error.code = code;
+    }
+
+    error.request = request;
+    error.response = response;
+    return error;
+  };
+},585,[],"axios/lib/core/enhanceError.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var utils = require(_dependencyMap[0], './../utils');
+
+  function encode(val) {
+    return encodeURIComponent(val).replace(/%40/gi, '@').replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',').replace(/%20/g, '+').replace(/%5B/gi, '[').replace(/%5D/gi, ']');
+  }
+
+  module.exports = function buildURL(url, params, paramsSerializer) {
+    if (!params) {
+      return url;
+    }
+
+    var serializedParams;
+
+    if (paramsSerializer) {
+      serializedParams = paramsSerializer(params);
+    } else if (utils.isURLSearchParams(params)) {
+      serializedParams = params.toString();
+    } else {
+      var parts = [];
+      utils.forEach(params, function serialize(val, key) {
+        if (val === null || typeof val === 'undefined') {
+          return;
+        }
+
+        if (utils.isArray(val)) {
+          key = key + '[]';
+        }
+
+        if (!utils.isArray(val)) {
+          val = [val];
+        }
+
+        utils.forEach(val, function parseValue(v) {
+          if (utils.isDate(v)) {
+            v = v.toISOString();
+          } else if (utils.isObject(v)) {
+            v = JSON.stringify(v);
+          }
+
+          parts.push(encode(key) + '=' + encode(v));
+        });
+      });
+      serializedParams = parts.join('&');
+    }
+
+    if (serializedParams) {
+      url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+    }
+
+    return url;
+  };
+},586,[576],"axios/lib/helpers/buildURL.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var utils = require(_dependencyMap[0], './../utils');
+
+  var ignoreDuplicateOf = ['age', 'authorization', 'content-length', 'content-type', 'etag', 'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since', 'last-modified', 'location', 'max-forwards', 'proxy-authorization', 'referer', 'retry-after', 'user-agent'];
+
+  module.exports = function parseHeaders(headers) {
+    var parsed = {};
+    var key;
+    var val;
+    var i;
+
+    if (!headers) {
+      return parsed;
+    }
+
+    utils.forEach(headers.split('\n'), function parser(line) {
+      i = line.indexOf(':');
+      key = utils.trim(line.substr(0, i)).toLowerCase();
+      val = utils.trim(line.substr(i + 1));
+
+      if (key) {
+        if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+          return;
+        }
+
+        if (key === 'set-cookie') {
+          parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+        } else {
+          parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+        }
+      }
+    });
+    return parsed;
+  };
+},587,[576],"axios/lib/helpers/parseHeaders.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var utils = require(_dependencyMap[0], './../utils');
+
+  module.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
+    var msie = /(msie|trident)/i.test(navigator.userAgent);
+    var urlParsingNode = document.createElement('a');
+    var originURL;
+
+    function resolveURL(url) {
+      var href = url;
+
+      if (msie) {
+        urlParsingNode.setAttribute('href', href);
+        href = urlParsingNode.href;
+      }
+
+      urlParsingNode.setAttribute('href', href);
+      return {
+        href: urlParsingNode.href,
+        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+        host: urlParsingNode.host,
+        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+        hostname: urlParsingNode.hostname,
+        port: urlParsingNode.port,
+        pathname: urlParsingNode.pathname.charAt(0) === '/' ? urlParsingNode.pathname : '/' + urlParsingNode.pathname
+      };
+    }
+
+    originURL = resolveURL(window.location.href);
+    return function isURLSameOrigin(requestURL) {
+      var parsed = utils.isString(requestURL) ? resolveURL(requestURL) : requestURL;
+      return parsed.protocol === originURL.protocol && parsed.host === originURL.host;
+    };
+  }() : function nonStandardBrowserEnv() {
+    return function isURLSameOrigin() {
+      return true;
+    };
+  }();
+},588,[576],"axios/lib/helpers/isURLSameOrigin.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+  function E() {
+    this.message = 'String contains an invalid character';
+  }
+
+  E.prototype = new Error();
+  E.prototype.code = 5;
+  E.prototype.name = 'InvalidCharacterError';
+
+  function btoa(input) {
+    var str = String(input);
+    var output = '';
+
+    for (var block, charCode, idx = 0, map = chars; str.charAt(idx | 0) || (map = '=', idx % 1); output += map.charAt(63 & block >> 8 - idx % 1 * 8)) {
+      charCode = str.charCodeAt(idx += 3 / 4);
+
+      if (charCode > 0xFF) {
+        throw new E();
+      }
+
+      block = block << 8 | charCode;
+    }
+
+    return output;
+  }
+
+  module.exports = btoa;
+},589,[],"axios/lib/helpers/btoa.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var utils = require(_dependencyMap[0], './../utils');
+
+  module.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
+    return {
+      write: function write(name, value, expires, path, domain, secure) {
+        var cookie = [];
+        cookie.push(name + '=' + encodeURIComponent(value));
+
+        if (utils.isNumber(expires)) {
+          cookie.push('expires=' + new Date(expires).toGMTString());
+        }
+
+        if (utils.isString(path)) {
+          cookie.push('path=' + path);
+        }
+
+        if (utils.isString(domain)) {
+          cookie.push('domain=' + domain);
+        }
+
+        if (secure === true) {
+          cookie.push('secure');
+        }
+
+        document.cookie = cookie.join('; ');
+      },
+      read: function read(name) {
+        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+        return match ? decodeURIComponent(match[3]) : null;
+      },
+      remove: function remove(name) {
+        this.write(name, '', Date.now() - 86400000);
+      }
+    };
+  }() : function nonStandardBrowserEnv() {
+    return {
+      write: function write() {},
+      read: function read() {
+        return null;
+      },
+      remove: function remove() {}
+    };
+  }();
+},590,[576],"axios/lib/helpers/cookies.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var utils = require(_dependencyMap[0], './../utils');
+
+  function InterceptorManager() {
+    this.handlers = [];
+  }
+
+  InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+    this.handlers.push({
+      fulfilled: fulfilled,
+      rejected: rejected
+    });
+    return this.handlers.length - 1;
+  };
+
+  InterceptorManager.prototype.eject = function eject(id) {
+    if (this.handlers[id]) {
+      this.handlers[id] = null;
+    }
+  };
+
+  InterceptorManager.prototype.forEach = function forEach(fn) {
+    utils.forEach(this.handlers, function forEachHandler(h) {
+      if (h !== null) {
+        fn(h);
+      }
+    });
+  };
+
+  module.exports = InterceptorManager;
+},591,[576],"axios/lib/core/InterceptorManager.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var utils = require(_dependencyMap[0], './../utils');
+
+  var transformData = require(_dependencyMap[1], './transformData');
+
+  var isCancel = require(_dependencyMap[2], '../cancel/isCancel');
+
+  var defaults = require(_dependencyMap[3], '../defaults');
+
+  var isAbsoluteURL = require(_dependencyMap[4], './../helpers/isAbsoluteURL');
+
+  var combineURLs = require(_dependencyMap[5], './../helpers/combineURLs');
+
+  function throwIfCancellationRequested(config) {
+    if (config.cancelToken) {
+      config.cancelToken.throwIfRequested();
+    }
+  }
+
+  module.exports = function dispatchRequest(config) {
+    throwIfCancellationRequested(config);
+
+    if (config.baseURL && !isAbsoluteURL(config.url)) {
+      config.url = combineURLs(config.baseURL, config.url);
+    }
+
+    config.headers = config.headers || {};
+    config.data = transformData(config.data, config.headers, config.transformRequest);
+    config.headers = utils.merge(config.headers.common || {}, config.headers[config.method] || {}, config.headers || {});
+    utils.forEach(['delete', 'get', 'head', 'post', 'put', 'patch', 'common'], function cleanHeaderConfig(method) {
+      delete config.headers[method];
+    });
+    var adapter = config.adapter || defaults.adapter;
+    return adapter(config).then(function onAdapterResolution(response) {
+      throwIfCancellationRequested(config);
+      response.data = transformData(response.data, response.headers, config.transformResponse);
+      return response;
+    }, function onAdapterRejection(reason) {
+      if (!isCancel(reason)) {
+        throwIfCancellationRequested(config);
+
+        if (reason && reason.response) {
+          reason.response.data = transformData(reason.response.data, reason.response.headers, config.transformResponse);
+        }
+      }
+
+      return Promise.reject(reason);
+    });
+  };
+},592,[576,593,594,580,595,596],"axios/lib/core/dispatchRequest.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var utils = require(_dependencyMap[0], './../utils');
+
+  module.exports = function transformData(data, headers, fns) {
+    utils.forEach(fns, function transform(fn) {
+      data = fn(data, headers);
+    });
+    return data;
+  };
+},593,[576],"axios/lib/core/transformData.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  module.exports = function isCancel(value) {
+    return !!(value && value.__CANCEL__);
+  };
+},594,[],"axios/lib/cancel/isCancel.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  module.exports = function isAbsoluteURL(url) {
+    return (/^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url)
+    );
+  };
+},595,[],"axios/lib/helpers/isAbsoluteURL.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  module.exports = function combineURLs(baseURL, relativeURL) {
+    return relativeURL ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL;
+  };
+},596,[],"axios/lib/helpers/combineURLs.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  function Cancel(message) {
+    this.message = message;
+  }
+
+  Cancel.prototype.toString = function toString() {
+    return 'Cancel' + (this.message ? ': ' + this.message : '');
+  };
+
+  Cancel.prototype.__CANCEL__ = true;
+  module.exports = Cancel;
+},597,[],"axios/lib/cancel/Cancel.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var Cancel = require(_dependencyMap[0], './Cancel');
+
+  function CancelToken(executor) {
+    if (typeof executor !== 'function') {
+      throw new TypeError('executor must be a function.');
+    }
+
+    var resolvePromise;
+    this.promise = new Promise(function promiseExecutor(resolve) {
+      resolvePromise = resolve;
+    });
+    var token = this;
+    executor(function cancel(message) {
+      if (token.reason) {
+        return;
+      }
+
+      token.reason = new Cancel(message);
+      resolvePromise(token.reason);
+    });
+  }
+
+  CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+    if (this.reason) {
+      throw this.reason;
+    }
+  };
+
+  CancelToken.source = function source() {
+    var cancel;
+    var token = new CancelToken(function executor(c) {
+      cancel = c;
+    });
+    return {
+      token: token,
+      cancel: cancel
+    };
+  };
+
+  module.exports = CancelToken;
+},598,[597],"axios/lib/cancel/CancelToken.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  'use strict';
+
+  module.exports = function spread(callback) {
+    return function wrap(arr) {
+      return callback.apply(null, arr);
+    };
+  };
+},599,[],"axios/lib/helpers/spread.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var host = exports.host = "api.51bakery.com";
+},600,[],"app-config");
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+    var _baseServiceRequest2 = require(_dependencyMap[0], "base-service-request");
+
+    var _baseServiceRequest3 = _interopRequireDefault(_baseServiceRequest2);
+
+    var _httpModuleType = require(_dependencyMap[1], "http-module-type");
+
+    var _httpModuleType2 = _interopRequireDefault(_httpModuleType);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var UserLoginRequest = function (_baseServiceRequest) {
+        _inherits(UserLoginRequest, _baseServiceRequest);
+
+        function UserLoginRequest(username, password) {
+            _classCallCheck(this, UserLoginRequest);
+
+            var _this = _possibleConstructorReturn(this, (UserLoginRequest.__proto__ || Object.getPrototypeOf(UserLoginRequest)).call(this));
+
+            _get(UserLoginRequest.prototype.__proto__ || Object.getPrototypeOf(UserLoginRequest.prototype), "addRequestUri", _this).call(_this, "index/user/login");
+
+            _get(UserLoginRequest.prototype.__proto__ || Object.getPrototypeOf(UserLoginRequest.prototype), "addRequestParameter", _this).call(_this, "username", username);
+
+            _get(UserLoginRequest.prototype.__proto__ || Object.getPrototypeOf(UserLoginRequest.prototype), "addRequestParameter", _this).call(_this, "password", password);
+
+            _get(UserLoginRequest.prototype.__proto__ || Object.getPrototypeOf(UserLoginRequest.prototype), "addPathParameter", _this).call(_this, "index.php");
+
+            _this._methodType = _httpModuleType2.default.POST;
+            return _this;
+        }
+
+        _createClass(UserLoginRequest, [{
+            key: "getMethod",
+            value: function getMethod() {
+                return this._methodType;
+            }
+        }]);
+
+        return UserLoginRequest;
+    }(_baseServiceRequest3.default);
+
+    exports.default = UserLoginRequest;
+},601,[602,603],"puffmobile/src/services/request/user-login-request.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    var BaseServiceRequest = function () {
+        function BaseServiceRequest() {
+            _classCallCheck(this, BaseServiceRequest);
+
+            this._requestCommandsParams = [];
+            this._postParamValuesDict = [];
+            this._requestUri = '';
+            this._requestContent;
+        }
+
+        _createClass(BaseServiceRequest, [{
+            key: "getMethod",
+            value: function getMethod() {
+                return;
+            }
+        }, {
+            key: "getRequestUri",
+            value: function getRequestUri() {
+                return this.getUri();
+            }
+        }, {
+            key: "getMessageName",
+            value: function getMessageName() {
+                return;
+            }
+        }, {
+            key: "getRequiredSecured",
+            value: function getRequiredSecured() {
+                return false;
+            }
+        }, {
+            key: "addRequestParameter",
+            value: function addRequestParameter(paramName, value) {
+                if (paramName) {
+                    this._postParamValuesDict.push({
+                        key: paramName,
+                        value: value
+                    });
+                }
+            }
+        }, {
+            key: "addRequestUri",
+            value: function addRequestUri(uri) {
+                this._requestUri = uri;
+            }
+        }, {
+            key: "addPathParameter",
+            value: function addPathParameter(value) {
+                this._requestCommandsParams.push(this.htmlEnc(value));
+            }
+        }, {
+            key: "getUri",
+            value: function getUri() {
+                var retValue = void 0;
+
+                var reqParams = this._requestCommandsParams.join('/');
+
+                if (reqParams) {
+                    retValue = reqParams + "/" + this._requestUri;
+                } else {
+                    retValue = this._requestUri;
+                }
+
+                return retValue;
+            }
+        }, {
+            key: "getParamaterString",
+            value: function getParamaterString() {
+                var parameters = [];
+
+                for (var index = 0; index < this._postParamValuesDict.length; index++) {
+                    parameters.push(this._postParamValuesDict[index].key + "=" + this._postParamValuesDict[index].value);
+                }
+
+                return parameters.join('&');
+            }
+        }, {
+            key: "getParametersObject",
+            value: function getParametersObject() {
+                var parameters = [];
+
+                for (var index = 0; index < this._postParamValuesDict.length; index++) {
+                    parameters[this._postParamValuesDict[index].key] = this._postParamValuesDict[index].value;
+                }
+
+                return _extends({}, parameters);
+            }
+        }, {
+            key: "getContent",
+            value: function getContent() {
+                return this._requestContent;
+            }
+        }, {
+            key: "setContent",
+            value: function setContent(reqData) {
+                this._requestContent = reqData;
+            }
+        }, {
+            key: "htmlEnc",
+            value: function htmlEnc(s) {
+                return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, '&#39;').replace(/"/g, '&#34;');
+            }
+        }]);
+
+        return BaseServiceRequest;
+    }();
+
+    exports.default = BaseServiceRequest;
+},602,[],"base-service-request");
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    var HttpMethodType = {
+        GET: 'GET',
+        POST: 'POST',
+        PUT: 'PUT',
+        DELETE: 'DELETE'
+    };
+    exports.default = HttpMethodType;
+},603,[],"http-module-type");
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "d:\\SourceCode\\ReactJS\\PuffMobile\\src\\components\\userlist-component.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _reactRedux = require(_dependencyMap[3], "react-redux");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        UserList: {
+            displayName: "UserList"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "d:/SourceCode/ReactJS/PuffMobile/src/components/userlist-component.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var UserList = _wrapComponent("UserList")(function (_Component) {
+        _inherits(UserList, _Component);
+
+        function UserList(props) {
+            _classCallCheck(this, UserList);
+
+            return _possibleConstructorReturn(this, (UserList.__proto__ || Object.getPrototypeOf(UserList)).call(this, props));
+        }
+
+        _createClass(UserList, [{
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 11
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 12
+                            }
+                        },
+                        "I am the component"
+                    )
+                );
+            }
+        }]);
+
+        return UserList;
+    }(_react2.Component));
+
+    exports.default = UserList;
+},604,[108,175,12,488],"puffmobile/src/components/userlist-component.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+    var _jsxFileName = "d:\\SourceCode\\ReactJS\\PuffMobile\\src\\components\\login-component.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _reactRedux = require(_dependencyMap[3], "react-redux");
+
+    var _baseStyle = require(_dependencyMap[4], "base-style");
+
+    var _loginStyle = require(_dependencyMap[5], "../styles/login-style");
+
+    var _userActions = require(_dependencyMap[6], "../actions/user-actions");
+
+    var UserActions = _interopRequireWildcard(_userActions);
+
+    function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Login: {
+            displayName: "Login"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "d:/SourceCode/ReactJS/PuffMobile/src/components/login-component.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var Login = _wrapComponent("Login")(function (_Component) {
+        _inherits(Login, _Component);
+
+        function Login(props) {
+            var _this2 = this;
+
+            _classCallCheck(this, Login);
+
+            var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+
+            _this.onLogin = function _callee() {
+                var _this$state, username, password, response;
+
+                return regeneratorRuntime.async(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _this$state = _this.state, username = _this$state.username, password = _this$state.password;
+                                _context.next = 3;
+                                return regeneratorRuntime.awrap(_reactNative.Keyboard.dismiss());
+
+                            case 3:
+                                _context.next = 5;
+                                return regeneratorRuntime.awrap(_this.setState({
+                                    loading: true
+                                }));
+
+                            case 5:
+                                _context.next = 7;
+                                return regeneratorRuntime.awrap(_this.props.onLogin(username, password));
+
+                            case 7:
+                                response = _context.sent;
+
+                            case 8:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, null, _this2);
+            };
+
+            _this.state = {
+                loading: false,
+                username: null,
+                password: null,
+                saveCredentials: true
+            };
+            return _this;
+        }
+
+        _createClass(Login, [{
+            key: "render",
+            value: function render() {
+                var _this3 = this;
+
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: _loginStyle.LoginStyles.container,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 32
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: _loginStyle.LoginStyles.topContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 33
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 34
+                                }
+                            },
+                            "I am the top"
+                        )
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: _loginStyle.LoginStyles.bottomContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 36
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.TextInput, {
+                            style: _loginStyle.LoginStyles.loginInput,
+                            placeholder: "Username",
+                            inlineImageLeft: "email",
+                            inlineImagePadding: 10,
+                            value: this.state.username,
+                            autoCapitalize: "none",
+                            onChangeText: function onChangeText(username) {
+                                return _this3.setState({
+                                    username: username
+                                });
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 37
+                            }
+                        }),
+                        _react3.default.createElement(_reactNative.TextInput, {
+                            style: _loginStyle.LoginStyles.loginInput,
+                            secureTextEntry: true,
+                            placeholder: "password",
+                            inlineImageLeft: "locker",
+                            inlineImagePadding: 10,
+                            value: this.state.password,
+                            secureTextEntry: true,
+                            autoCapitalize: "none",
+                            autoCorrect: false,
+                            onChangeText: function onChangeText(password) {
+                                return _this3.setState({
+                                    password: password
+                                });
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 45
+                            }
+                        }),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: {
+                                    width: "80%",
+                                    alignSelf: "center"
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 54
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.CheckBox, {
+                                style: {
+                                    width: 250
+                                },
+                                rightText: "Remember Email and Password",
+                                rightTextStyle: {
+                                    color: '#ccc',
+                                    fontSize: 14
+                                },
+                                isChecked: this.state.saveCredentials,
+                                checkBoxColor: "#00FF00",
+                                onClick: function onClick() {
+                                    return _this3.setState({
+                                        saveCredentials: !_this3.state.saveCredentials
+                                    });
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 55
+                                }
+                            })
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: {
+                                    width: "80%",
+                                    alignSelf: "center"
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 64
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Button, {
+                                style: _loginStyle.LoginStyles.loginInput,
+                                onPress: this.onLogin,
+                                title: "Submit",
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 65
+                                }
+                            })
+                        )
+                    )
+                );
+            }
+        }]);
+
+        return Login;
+    }(_react2.Component));
+
+    exports.default = (0, _reactRedux.connect)(null, _extends({}, UserActions))(Login);
+},605,[108,175,12,488,554,606,572],"puffmobile/src/components/login-component.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.LoginStyles = undefined;
 
     var _reactNativeExtendedStylesheet = require(_dependencyMap[0], "react-native-extended-stylesheet");
 
@@ -67586,23 +67651,156 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-    _reactNativeExtendedStylesheet2.default.build({
-        $medium: 16,
-        $small: 14,
-        $xsmall: 12,
-        $borderColor: '#979799',
-        $background: '#ccc'
-    });
-
-    var BaseStyles = exports.BaseStyles = _reactNativeExtendedStylesheet2.default.create({
+    var LoginStyles = exports.LoginStyles = _reactNativeExtendedStylesheet2.default.create({
         container: {
             flex: 1,
-            backgroundColor: '$background',
-            alignItems: 'center',
-            justifyContent: 'center'
+            backgroundColor: "red"
+        },
+        topContainer: {
+            flex: 1,
+            backgroundColor: 'powderblue'
+        },
+        bottomContainer: {
+            flex: 2,
+            backgroundColor: 'skyblue',
+            width: "100%",
+            flexDirection: 'column'
+        },
+        loginInput: {
+            width: "80%",
+            height: 50,
+            fontSize: '$small',
+            paddingVertical: 0,
+            alignSelf: "center"
+        },
+        loginButton: {
+            color: "#32a7f5"
+        },
+        loginButtonText: {
+            fontSize: 20,
+            color: 'white'
         }
     });
-},607,[591],"base-style");
+},606,[555],"puffmobile/src/styles/login-style.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "d:\\SourceCode\\ReactJS\\PuffMobile\\src\\container\\root-container.js";
+
+    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _reactRedux = require(_dependencyMap[3], "react-redux");
+
+    var _userActions = require(_dependencyMap[4], "../actions/user-actions");
+
+    var UserActions = _interopRequireWildcard(_userActions);
+
+    var _loginComponent = require(_dependencyMap[5], "../components/login-component");
+
+    var _loginComponent2 = _interopRequireDefault(_loginComponent);
+
+    var _userContainer = require(_dependencyMap[6], "./user-container");
+
+    var _userContainer2 = _interopRequireDefault(_userContainer);
+
+    function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        RootContainer: {
+            displayName: "RootContainer"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "d:/SourceCode/ReactJS/PuffMobile/src/container/root-container.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var RootContainer = _wrapComponent("RootContainer")(function (_Component) {
+        _inherits(RootContainer, _Component);
+
+        function RootContainer(props) {
+            _classCallCheck(this, RootContainer);
+
+            var _this = _possibleConstructorReturn(this, (RootContainer.__proto__ || Object.getPrototypeOf(RootContainer)).call(this, props));
+
+            _this.componentWillReceiveProps = function (nextprops) {
+                if (_this.props.user !== nextprops.user) {
+                    _this.setState(_extends({}, nextprops.user));
+                }
+            };
+
+            _this.state = {
+                isLoggedIn: false
+            };
+            return _this;
+        }
+
+        _createClass(RootContainer, [{
+            key: "render",
+            value: function render() {
+                if (this.state.isLoggedIn) {
+                    return _react3.default.createElement(_userContainer2.default, {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 28
+                        }
+                    });
+                } else {
+                    return _react3.default.createElement(_loginComponent2.default, {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 31
+                        }
+                    });
+                }
+            }
+        }]);
+
+        return RootContainer;
+    }(_react2.Component));
+
+    function mapStateToProps(state) {
+        return {
+            user: state.user
+        };
+    }
+
+    var actionCreators = _extends({}, UserActions);
+
+    RootContainer = (0, _reactRedux.connect)(mapStateToProps, actionCreators)(RootContainer);
+    exports.default = RootContainer;
+},608,[108,175,12,488,572,605,571],"puffmobile/src/container/root-container.js");
 require(23);
 require(11);
 //# sourceMappingURL=index.map
