@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import * as UserActions from "../actions/user-actions";
 import  Login from "../components/login-component";
-import UserContainer from "./user-container";
+import RootDrawer from "./drawer-navigator";
 
 class RootContainer extends Component{
     constructor(props){
@@ -23,9 +23,10 @@ class RootContainer extends Component{
     }
 
     render(){
- 
+        return <RootDrawer />
+        
         if(this.state.isLoggedIn){
-           return <UserContainer />
+           return <RootDrawer />
         }
         else{
             return <Login/>
