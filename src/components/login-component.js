@@ -1,10 +1,12 @@
 import React, {Component} from "react";
-import { Button, Text, View, TextInput, Keyboard, CheckBox } from 'react-native';
+import { Button, Text, View, TextInput, Keyboard } from 'react-native';
+import { CheckBox } from 'react-native-elements'
 import { connect } from 'react-redux';
 
 import {BaseStyles} from "base-style";
-import { LoginStyles } from '../styles/login-style';
+import PersistenceHelper from "persistence-helper";
 
+import { LoginStyles } from '../styles/login-style';
 import * as UserActions from "../actions/user-actions";
 
 
@@ -17,10 +19,35 @@ class Login extends Component{
             password: null,
             saveCredentials: true
         }
+
+        this.storageKey = "user";
+    }
+
+    componentDidMount = ()=>{
+        PersistenceHelper.getItem(this.storageKey, (error, result) => {
+            if (result) {
+                const cred = JSON.parse(result);
+                this.setState({ username: cred.username, password: cred.password })
+            }
+            else {
+                this.setState({ username: null, password: null })
+            }
+        })
     }
 
     onLogin = async ()=>{
         const {username, password} = this.state;
+        if(this.state.saveCredentials){
+            PersistenceHelper.setItem(this.storageKey, JSON.stringify({username: username, password: password}));
+        }
+        else{
+            PersistenceHelper.getItem(this.storageKey, (error, result) => {
+                if (result) {
+                    StorageHelper.removeItem("pUser");
+                }
+            })
+        }
+
         await Keyboard.dismiss();
         await this.setState({loading:true});
         let response = await this.props.onLogin(username, password);
@@ -53,12 +80,11 @@ class Login extends Component{
                         onChangeText={(password)=>this.setState({password:password})} />
                     <View style={{width:"80%", alignSelf:"center"}}>
                         <CheckBox
-                            style={{ width: 250 }}
-                            rightText='Remember Email and Password'
-                            rightTextStyle={{color:'#ccc',fontSize:14}}
-                            isChecked={this.state.saveCredentials}
-                            checkBoxColor="#00FF00"
-                            onClick={() => this.setState({ saveCredentials: !this.state.saveCredentials })}
+                            title='保存用户名和密码'
+                            checked={this.state.saveCredentials}
+                            onPress={() => this.setState({ saveCredentials: !this.state.saveCredentials })}
+                            containerStyle={{backgroundColor:'rgba(52, 52, 52, 0)', borderWidth:0}}
+                       
                         />
                     </View>
                 <View style={{width:"80%", alignSelf:"center"}}>

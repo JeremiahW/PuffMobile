@@ -1,10 +1,11 @@
 import baseServiceRequest from "base-service-request";
 import HttpMethodType from 'http-module-type';
+import ActionPaths from "request-url-paths";
 
 class UserLoginRequest extends baseServiceRequest{
     constructor(username, password){
         super();
-        super.addRequestUri("index/user/login");
+        super.addRequestUri(ActionPaths.POST_USER_LOGIN);
         super.addRequestParameter("username", username);
         super.addRequestParameter("password", password);
         super.addPathParameter("index.php");

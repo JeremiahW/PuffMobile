@@ -4,21 +4,26 @@ import { connect } from 'react-redux';
 
 import * as ClientActions from "../actions/client-actions";
 
+import ClientList from "../components/clientlist-component";
 
 class ClientContainer extends Component{
     constructor(props){
         super(props);
         this.state = {
-           clients:[]
+            clientData:[]
         }
+    }
+    componentWillMount=()=>{
+        this.props.getClients();
     }
 
     componentWillReceiveProps(nextProps){
-      
+      if(this.props.client !== nextProps.client){
+          this.setState({
+              clientData: nextProps.client,
+          })
+      }
     }
-
-  
- 
 
     render(){
         return (
@@ -27,7 +32,7 @@ class ClientContainer extends Component{
             { Platform.OS === 'android' && Platform.Version >= 20 ? <View style={{height: 24, backgroundColor: "#512DA8",}}/>: null }
             <ToolbarAndroid
                 style={{ height: 56,backgroundColor: "#673AB7",elevation: 4,}} titleColor="white" title="乐芙坊客户信息管理系统"/>
-                <Text>我是客户容器</Text>
+                <ClientList dataSoruce = {this.state.clientData} />
             </View>
         )
     }
@@ -35,7 +40,7 @@ class ClientContainer extends Component{
 
 function mapStateToProps(state){
     return {
-        user:state.user
+        client:state.client
     }
 }
 

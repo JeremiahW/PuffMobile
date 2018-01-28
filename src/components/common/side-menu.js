@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {Text, View, Button, FlatList,TouchableHighlight } from 'react-native';
+import { DrawerItems } from "react-navigation";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import NavigationModules from 'navigation-modules';
 
@@ -35,29 +36,7 @@ export default class SideMenu extends Component{
                     <Text style={{alignSelf:"flex-end"}}>PuffCMS</Text>
                 </View>
                 <View style={{flex:4}}>
-             
-                    <FlatList data={this.state.items} 
-                         removeClippedSubviews={false}
-                         ItemSeparatorComponent={this._separator}
-                        renderItem={({item})=>(
-                            <View style={{flex: 1, flexDirection: 'row', marginTop:15, marginBottom:15}}>
-                                 <View  style={{alignSelf:"center", marginLeft:10}}>
-                                    <Ionicons size = {iconSize} name={item.icon} />
-                                 </View>
-                                <View style={{alignSelf:"center", marginLeft:30}}>
-                                    <TouchableHighlight 
-                                        onPress={()=>{navigate(item.module)}}
-                                        underlayColor="#ff00ff">
-                                        <Text>{item.title}</Text>
-                                    </TouchableHighlight>
-                                </View>
-                            </View>
-                           
-                         
-                        )}
-                    />
-            
-
+                    <DrawerItems {...this.props} />
                 </View>
             </View>
         )

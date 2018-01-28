@@ -23,8 +23,6 @@ class RootContainer extends Component{
     }
 
     render(){
-        return <RootDrawer />
-        
         if(this.state.isLoggedIn){
            return <RootDrawer />
         }
