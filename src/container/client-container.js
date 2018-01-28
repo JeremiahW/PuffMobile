@@ -10,19 +10,44 @@ class ClientContainer extends Component{
     constructor(props){
         super(props);
         this.state = {
-            clientData:[]
+            clientData:[],
+            currentPage:1
         }
     }
     componentWillMount=()=>{
-        this.props.getClients();
+      this._refreshClientList();
     }
 
     componentWillReceiveProps(nextProps){
       if(this.props.client !== nextProps.client){
+          let tempClientData = nextProps.client;
+
+          if(this.state.currentPage > 1){
+              tempClientData.rows = [...this.state.clientData.rows, ...tempClientData.rows ]
+          }
+
+          console.log(tempClientData);
           this.setState({
-              clientData: nextProps.client,
+              clientData: tempClientData,
           })
       }
+    }
+
+    _refreshClientList = () =>{
+        this.setState({currentPage:1}, ()=>{
+            this.props.getClients(this.state.currentPage);
+            console.log("_refreshClientList!!")
+        })
+    }
+
+    _loadMore = () =>{
+        //注意检查是否达到最大页数
+        let page = this.state.currentPage + 1;
+
+        this.setState({currentPage:page},()=>{
+            this.props.getClients(this.state.currentPage);
+            console.log("_loadMore!!")
+        })
     }
 
     render(){
@@ -32,7 +57,7 @@ class ClientContainer extends Component{
             { Platform.OS === 'android' && Platform.Version >= 20 ? <View style={{height: 24, backgroundColor: "#512DA8",}}/>: null }
             <ToolbarAndroid
                 style={{ height: 56,backgroundColor: "#673AB7",elevation: 4,}} titleColor="white" title="乐芙坊客户信息管理系统"/>
-                <ClientList dataSoruce = {this.state.clientData} />
+                <ClientList dataSoruce = {this.state.clientData} onRefresh={this._refreshClientList} onLoadMore={this._loadMore} />
             </View>
         )
     }

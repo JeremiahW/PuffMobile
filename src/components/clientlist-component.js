@@ -4,15 +4,20 @@ import { connect } from 'react-redux';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import NoDataView from "no-data-view";
 
-export default class ClientList extends Component{
+import * as ClientActions from "../actions/client-actions";
+
+
+class ClientList extends Component{
     constructor(props){
         super(props);
         this.state = {
             rows:[],
             totalPages:0,
             pageSzie:20,
-            page:1
+            page:1,
+            isRefreshing: false
         }
     }
 
@@ -30,11 +35,18 @@ export default class ClientList extends Component{
         )
     }
 
+  
+
     render(){
         return <View>
             <FlatList 
                 data = {this.state.rows}
                 ItemSeparatorComponent = {this._rowSplitter}
+                refreshing = {this.state.isRefreshing}
+                onRefresh = {this.props.onRefresh}
+                onEndReached = {this.props.onLoadMore}
+                onEndReachedThreshold = {0}
+                ListEmptyComponent = {NoDataView}
                 renderItem={({item})=>(
                     <View style={{flex:1, marginLeft:10,  justifyContent: 'center'}}>
                         <View style={{flexDirection:"row"}}>
@@ -47,11 +59,15 @@ export default class ClientList extends Component{
                         </View>
                     </View>
                 )}
-                keyExtractor={item => item.id}
+                keyExtractor={(item, index)=>(index)}
 
             />
         </View>
     }
 }
+
+const actionCreators = {...ClientActions};
+ClientList = connect(null, actionCreators)(ClientList);
+export default ClientList;
 
 //Name, LastShoppedDate, LevelSubject, Phone, PrepaidBalance, Total,

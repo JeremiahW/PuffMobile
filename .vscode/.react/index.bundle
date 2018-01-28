@@ -58335,7 +58335,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }(_react3.default.Component));
 
   exports.default = App;
-},487,[108,175,12,488,517,528,545,686,754],"puffmobile/App.js");
+},487,[108,175,12,488,517,528,545,687,755],"puffmobile/App.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -62904,7 +62904,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     }(_react2.Component));
 
     exports.default = (0, _reactRedux.connect)(null, _extends({}, UserActions))(Login);
-},545,[108,175,12,546,488,528,760,652,653],"puffmobile/src/components/login-component.js");
+},545,[108,175,12,546,488,528,652,653,654],"puffmobile/src/components/login-component.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -77092,6 +77092,85 @@ __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[0], "react-native");
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    var PersistenceHelper = function () {
+        function PersistenceHelper() {
+            _classCallCheck(this, PersistenceHelper);
+
+            _objectMap = {};
+        }
+
+        _createClass(PersistenceHelper, [{
+            key: "getItem",
+            value: function getItem(key, callback) {
+                if (_objectMap.hasOwnProperty(key)) {
+                    callback(undefined, _objectMap[key]);
+                } else {
+                    _reactNative.AsyncStorage.getItem(key, function (error, result) {
+                        if (error) {
+                            if (callback) {
+                                callback(error, undefined);
+                            }
+                        } else {
+                            if (callback) {
+                                callback(undefined, result);
+                            }
+                        }
+                    });
+                }
+            }
+        }, {
+            key: "setItem",
+            value: function setItem(key, item, callback) {
+                return _reactNative.AsyncStorage.setItem(key, item, function (error) {
+                    if (error) {
+                        if (callback) {
+                            callback(error);
+                        }
+                    } else {
+                        _objectMap[key] = item;
+
+                        if (callback) {
+                            callback();
+                        }
+                    }
+                });
+            }
+        }, {
+            key: "removeItem",
+            value: function removeItem(key, callback) {
+                return _reactNative.AsyncStorage.removeItem(key, function (error) {
+                    if (error) {
+                        if (callback) {
+                            callback(error);
+                        }
+                    } else {
+                        delete _objectMap["key"];
+
+                        if (callback) {
+                            callback();
+                        }
+                    }
+                });
+            }
+        }]);
+
+        return PersistenceHelper;
+    }();
+
+    var persistenceHelper = new PersistenceHelper();
+    exports.default = persistenceHelper;
+},652,[12],"persistence-helper");
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
     exports.LoginStyles = undefined;
 
     var _reactNativeExtendedStylesheet = require(_dependencyMap[0], "react-native-extended-stylesheet");
@@ -77130,7 +77209,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
             color: 'white'
         }
     });
-},652,[529],"puffmobile/src/styles/login-style.js");
+},653,[529],"puffmobile/src/styles/login-style.js");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -77203,7 +77282,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
             });
         };
     }
-},653,[521,654,682],"puffmobile/src/actions/user-actions.js");
+},654,[521,655,683],"puffmobile/src/actions/user-actions.js");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -77280,10 +77359,10 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     var restfulApi = new RestfulAPI();
     exports.default = restfulApi;
-},654,[655,681],"restful-api");
+},655,[656,682],"restful-api");
 __d(function (global, require, module, exports, _dependencyMap) {
   module.exports = require(_dependencyMap[0], './lib/axios');
-},655,[656],"axios/index.js");
+},656,[657],"axios/index.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -77321,7 +77400,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   axios.spread = require(_dependencyMap[7], './helpers/spread');
   module.exports = axios;
   module.exports.default = axios;
-},656,[657,658,660,661,678,679,675,680],"axios/lib/axios.js");
+},657,[658,659,661,662,679,680,676,681],"axios/lib/axios.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -77480,7 +77559,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     extend: extend,
     trim: trim
   };
-},657,[658,659],"axios/lib/utils.js");
+},658,[659,660],"axios/lib/utils.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -77495,7 +77574,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       return fn.apply(thisArg, args);
     };
   };
-},658,[],"axios/lib/helpers/bind.js");
+},659,[],"axios/lib/helpers/bind.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   /*!
    * Determine if an object is a Buffer
@@ -77513,7 +77592,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   function isSlowBuffer(obj) {
     return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0));
   }
-},659,[],"is-buffer/index.js");
+},660,[],"is-buffer/index.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -77578,7 +77657,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     };
   });
   module.exports = Axios;
-},660,[661,657,672,673],"axios/lib/core/Axios.js");
+},661,[662,658,673,674],"axios/lib/core/Axios.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -77662,7 +77741,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
   });
   module.exports = defaults;
-},661,[657,662,663,663],"axios/lib/defaults.js");
+},662,[658,663,664,664],"axios/lib/defaults.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -77676,7 +77755,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       }
     });
   };
-},662,[657],"axios/lib/helpers/normalizeHeaderName.js");
+},663,[658],"axios/lib/helpers/normalizeHeaderName.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -77820,7 +77899,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       request.send(requestData);
     });
   };
-},663,[657,664,667,668,669,665,670,671],"axios/lib/adapters/xhr.js");
+},664,[658,665,668,669,670,666,671,672],"axios/lib/adapters/xhr.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -77835,7 +77914,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       reject(createError('Request failed with status code ' + response.status, response.config, null, response.request, response));
     }
   };
-},664,[665],"axios/lib/core/settle.js");
+},665,[666],"axios/lib/core/settle.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -77845,7 +77924,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     var error = new Error(message);
     return enhanceError(error, config, code, request, response);
   };
-},665,[666],"axios/lib/core/createError.js");
+},666,[667],"axios/lib/core/createError.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -77860,7 +77939,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     error.response = response;
     return error;
   };
-},666,[],"axios/lib/core/enhanceError.js");
+},667,[],"axios/lib/core/enhanceError.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -77915,7 +77994,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     return url;
   };
-},667,[657],"axios/lib/helpers/buildURL.js");
+},668,[658],"axios/lib/helpers/buildURL.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -77952,7 +78031,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     });
     return parsed;
   };
-},668,[657],"axios/lib/helpers/parseHeaders.js");
+},669,[658],"axios/lib/helpers/parseHeaders.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -77994,7 +78073,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       return true;
     };
   }();
-},669,[657],"axios/lib/helpers/isURLSameOrigin.js");
+},670,[658],"axios/lib/helpers/isURLSameOrigin.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -78026,7 +78105,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }
 
   module.exports = btoa;
-},670,[],"axios/lib/helpers/btoa.js");
+},671,[],"axios/lib/helpers/btoa.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -78073,7 +78152,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       remove: function remove() {}
     };
   }();
-},671,[657],"axios/lib/helpers/cookies.js");
+},672,[658],"axios/lib/helpers/cookies.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -78106,7 +78185,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   };
 
   module.exports = InterceptorManager;
-},672,[657],"axios/lib/core/InterceptorManager.js");
+},673,[658],"axios/lib/core/InterceptorManager.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -78158,7 +78237,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       return Promise.reject(reason);
     });
   };
-},673,[657,674,675,661,676,677],"axios/lib/core/dispatchRequest.js");
+},674,[658,675,676,662,677,678],"axios/lib/core/dispatchRequest.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -78170,14 +78249,14 @@ __d(function (global, require, module, exports, _dependencyMap) {
     });
     return data;
   };
-},674,[657],"axios/lib/core/transformData.js");
+},675,[658],"axios/lib/core/transformData.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
   module.exports = function isCancel(value) {
     return !!(value && value.__CANCEL__);
   };
-},675,[],"axios/lib/cancel/isCancel.js");
+},676,[],"axios/lib/cancel/isCancel.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -78185,14 +78264,14 @@ __d(function (global, require, module, exports, _dependencyMap) {
     return (/^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url)
     );
   };
-},676,[],"axios/lib/helpers/isAbsoluteURL.js");
+},677,[],"axios/lib/helpers/isAbsoluteURL.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
   module.exports = function combineURLs(baseURL, relativeURL) {
     return relativeURL ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL;
   };
-},677,[],"axios/lib/helpers/combineURLs.js");
+},678,[],"axios/lib/helpers/combineURLs.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -78206,7 +78285,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
   Cancel.prototype.__CANCEL__ = true;
   module.exports = Cancel;
-},678,[],"axios/lib/cancel/Cancel.js");
+},679,[],"axios/lib/cancel/Cancel.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -78250,7 +78329,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   };
 
   module.exports = CancelToken;
-},679,[678],"axios/lib/cancel/CancelToken.js");
+},680,[679],"axios/lib/cancel/CancelToken.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -78259,13 +78338,13 @@ __d(function (global, require, module, exports, _dependencyMap) {
       return callback.apply(null, arr);
     };
   };
-},680,[],"axios/lib/helpers/spread.js");
+},681,[],"axios/lib/helpers/spread.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
   var host = exports.host = "api.51bakery.com";
-},681,[],"app-config");
+},682,[],"app-config");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -78326,7 +78405,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     }(_baseServiceRequest3.default);
 
     exports.default = UserLoginRequest;
-},682,[683,684,685],"puffmobile/src/services/request/user-login-request.js");
+},683,[684,685,686],"puffmobile/src/services/request/user-login-request.js");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -78446,7 +78525,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     }();
 
     exports.default = BaseServiceRequest;
-},683,[],"base-service-request");
+},684,[],"base-service-request");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -78458,7 +78537,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
         DELETE: 'DELETE'
     };
     exports.default = HttpMethodType;
-},684,[],"http-module-type");
+},685,[],"http-module-type");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -78481,7 +78560,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
         REPORT_MONTHLY_INCOME: "index/order/monthlyIncome"
     };
     exports.default = ActionPaths;
-},685,[],"request-url-paths");
+},686,[],"request-url-paths");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -78600,7 +78679,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     RootContainer = (0, _reactRedux.connect)(mapStateToProps, actionCreators)(RootContainer);
     exports.default = RootContainer;
-},686,[108,175,12,488,653,545,687],"puffmobile/src/container/root-container.js");
+},687,[108,175,12,488,654,545,688],"puffmobile/src/container/root-container.js");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -78758,7 +78837,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
         }
     });
     exports.default = RootDrawer;
-},687,[108,688,488,607,752,753,754,756],"puffmobile/src/container/drawer-navigator.js");
+},688,[108,689,488,607,753,754,755,757],"puffmobile/src/container/drawer-navigator.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   module.exports = {
     get createNavigationContainer() {
@@ -78858,7 +78937,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     }
 
   };
-},688,[689,694,692,691,695,696,728,745,719,729,716,697,698,700,710,703,704,705,747,750,730,742,744,751],"react-navigation/src/react-navigation.js");
+},689,[690,695,693,692,696,697,729,746,720,730,717,698,699,701,711,704,705,706,748,751,731,743,745,752],"react-navigation/src/react-navigation.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -79128,7 +79207,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     return NavigationContainer;
   }
-},689,[108,175,690,691,692,693],"react-navigation/src/createNavigationContainer.js");
+},690,[108,175,691,692,693,694],"react-navigation/src/createNavigationContainer.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -79140,7 +79219,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   var BackHandler = _reactNative.BackHandler || _reactNative.BackAndroid;
   exports.BackHandler = BackHandler;
   exports.Linking = _reactNative.Linking;
-},690,[12],"react-navigation/src/PlatformHelpers.native.js");
+},691,[12],"react-navigation/src/PlatformHelpers.native.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -79281,7 +79360,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     uri: uri,
     mapDeprecatedActionAndWarn: mapDeprecatedActionAndWarn
   };
-},691,[],"react-navigation/src/NavigationActions.js");
+},692,[],"react-navigation/src/NavigationActions.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -79330,7 +79409,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   var _invariant2 = _interopRequireDefault(_invariant);
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},692,[691,693],"react-navigation/src/addNavigationHelpers.js");
+},693,[692,694],"react-navigation/src/addNavigationHelpers.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -79367,7 +79446,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }
 
   module.exports = invariant;
-},693,[],"react-navigation/src/utils/invariant.js");
+},694,[],"react-navigation/src/utils/invariant.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -79481,7 +79560,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     }
   };
   exports.default = StateUtils;
-},694,[693],"react-navigation/src/StateUtils.js");
+},695,[694],"react-navigation/src/StateUtils.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -79565,7 +79644,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       return Navigator;
     };
   }
-},695,[108,175],"react-navigation/src/navigators/createNavigator.js");
+},696,[108,175],"react-navigation/src/navigators/createNavigator.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -79638,7 +79717,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     });
     return (0, _createNavigationContainer2.default)(navigator);
   };
-},696,[108,689,695,697,719,727],"react-navigation/src/navigators/StackNavigator.js");
+},697,[108,690,696,698,720,728],"react-navigation/src/navigators/StackNavigator.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -79780,7 +79859,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }, _temp2));
 
   exports.default = CardStackTransitioner;
-},697,[108,175,12,698,714,716,713],"react-navigation/src/views/CardStack/CardStackTransitioner.js");
+},698,[108,175,12,699,715,717,714],"react-navigation/src/views/CardStack/CardStackTransitioner.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -80267,14 +80346,14 @@ __d(function (global, require, module, exports, _dependencyMap) {
   });
 
   exports.default = CardStack;
-},698,[108,175,699,12,700,703,691,692,712,713],"react-navigation/src/views/CardStack/CardStack.js");
+},699,[108,175,700,12,701,704,692,693,713,714],"react-navigation/src/views/CardStack/CardStack.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   module.exports = clamp;
 
   function clamp(value, min, max) {
     return min < max ? value < min ? min : value > max ? max : value : value < max ? max : value > min ? min : value;
   }
-},699,[],"clamp/index.js");
+},700,[],"clamp/index.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -80382,7 +80461,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
   Card = (0, _PointerEventsContainer2.default)(Card);
   exports.default = Card;
-},700,[108,175,12,701],"react-navigation/src/views/CardStack/Card.js");
+},701,[108,175,12,702],"react-navigation/src/views/CardStack/Card.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -80548,7 +80627,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     return Container;
   }
-},701,[108,175,693,702],"react-navigation/src/views/CardStack/PointerEventsContainer.js");
+},702,[108,175,694,703],"react-navigation/src/views/CardStack/PointerEventsContainer.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -80580,7 +80659,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }();
 
   exports.default = AnimatedValueSubscription;
-},702,[12],"react-navigation/src/views/AnimatedValueSubscription.js");
+},703,[12],"react-navigation/src/views/AnimatedValueSubscription.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'no babel-plugin-flow-react-proptypes';
 
@@ -81042,7 +81121,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   });
 
   exports.default = (0, _withOrientation2.default)(Header);
-},703,[108,175,12,704,705,708,710,711],"react-navigation/src/views/Header/Header.js");
+},704,[108,175,12,705,706,709,711,712],"react-navigation/src/views/Header/Header.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -81091,7 +81170,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   });
 
   exports.default = HeaderTitle;
-},704,[108,12],"react-navigation/src/views/Header/HeaderTitle.js");
+},705,[108,12],"react-navigation/src/views/Header/HeaderTitle.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -81287,7 +81366,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   });
 
   exports.default = HeaderBackButton;
-},705,[108,175,12,706,707],"react-navigation/src/views/Header/HeaderBackButton.js");
+},706,[108,175,12,707,708],"react-navigation/src/views/Header/HeaderBackButton.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -81405,7 +81484,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }, _temp));
 
   exports.default = TouchableItem;
-},706,[108,175,12],"react-navigation/src/views/TouchableItem.js");
+},707,[108,175,12],"react-navigation/src/views/TouchableItem.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   module.exports = require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -81417,7 +81496,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     "name": "back-icon",
     "type": "png"
   });
-},707,[161],"node_modules\\react-navigation\\src\\views\\assets\\back-icon.png");
+},708,[161],"node_modules\\react-navigation\\src\\views\\assets\\back-icon.png");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -81498,7 +81577,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     forCenter: forCenter,
     forRight: forRight
   };
-},708,[12,709],"react-navigation/src/views/Header/HeaderStyleInterpolator.js");
+},709,[12,710],"react-navigation/src/views/Header/HeaderStyleInterpolator.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -81548,7 +81627,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }
 
   exports.default = getSceneIndicesForInterpolationInputRange;
-},709,[],"react-navigation/src/utils/getSceneIndicesForInterpolationInputRange.js");
+},710,[],"react-navigation/src/utils/getSceneIndicesForInterpolationInputRange.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -81944,7 +82023,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }, _temp2));
 
   exports.default = (0, _withOrientation2.default)(SafeView);
-},710,[108,175,12,711],"react-navigation/src/views/SafeAreaView.js");
+},711,[108,175,12,712],"react-navigation/src/views/SafeAreaView.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -82065,7 +82144,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
         height = _ref.height;
     return width > height;
   };
-},711,[108,175,12,493],"react-navigation/src/views/withOrientation.js");
+},712,[108,175,12,493],"react-navigation/src/views/withOrientation.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -82158,7 +82237,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }, _temp));
 
   exports.default = SceneView;
-},712,[108,175,127],"react-navigation/src/views/SceneView.js");
+},713,[108,175,127],"react-navigation/src/views/SceneView.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -82258,7 +82337,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     defaultTransitionConfig: defaultTransitionConfig,
     getTransitionConfig: getTransitionConfig
   };
-},713,[12,714,715],"react-navigation/src/views/CardStack/TransitionConfigs.js");
+},714,[12,715,716],"react-navigation/src/views/CardStack/TransitionConfigs.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -82432,7 +82511,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     forFade: forFade,
     canUseNativeDriver: canUseNativeDriver
   };
-},714,[12,709],"react-navigation/src/views/CardStack/CardStackStyleInterpolator.js");
+},715,[12,710],"react-navigation/src/views/CardStack/CardStackStyleInterpolator.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -82453,7 +82532,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     return false;
   };
-},715,[12],"react-navigation/src/utils/ReactNativeFeatures.js");
+},716,[12],"react-navigation/src/utils/ReactNativeFeatures.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -82782,7 +82861,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   });
 
   exports.default = Transitioner;
-},716,[108,175,12,693,717],"react-navigation/src/views/Transitioner.js");
+},717,[108,175,12,694,718],"react-navigation/src/views/Transitioner.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -82945,7 +83024,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     return scenes;
   }
-},717,[693,718],"react-navigation/src/views/ScenesReducer.js");
+},718,[694,719],"react-navigation/src/views/ScenesReducer.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -82985,7 +83064,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }
 
   module.exports = shallowEqual;
-},718,[],"react-navigation/src/utils/shallowEqual.js");
+},719,[],"react-navigation/src/utils/shallowEqual.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -83397,7 +83476,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       getScreenConfig: _getScreenConfigDeprecated2.default
     };
   };
-},719,[720,691,722,723,694,725,726,693],"react-navigation/src/routers/StackRouter.js");
+},720,[721,692,723,724,695,726,727,694],"react-navigation/src/routers/StackRouter.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   var isarray = require(_dependencyMap[0], 'isarray');
 
@@ -83688,12 +83767,12 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     return stringToRegexp(path, keys, options);
   }
-},720,[721],"path-to-regexp/index.js");
+},721,[722],"path-to-regexp/index.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   module.exports = Array.isArray || function (arr) {
     return Object.prototype.toString.call(arr) == '[object Array]';
   };
-},721,[],"isarray/index.js");
+},722,[],"isarray/index.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -83774,7 +83853,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       return outputConfig;
     };
   };
-},722,[693,723,692,724],"react-navigation/src/routers/createConfigGetter.js");
+},723,[694,724,693,725],"react-navigation/src/routers/createConfigGetter.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -83808,7 +83887,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     throw new Error("Route " + routeName + " must define a screen or a getScreen.");
   }
-},723,[693],"react-navigation/src/routers/getScreenForRouteName.js");
+},724,[694],"react-navigation/src/routers/getScreenForRouteName.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -83840,7 +83919,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       })), ['}']).join('\n'));
     }
   };
-},724,[],"react-navigation/src/routers/validateScreenOptions.js");
+},725,[],"react-navigation/src/routers/validateScreenOptions.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -83871,7 +83950,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }
 
   exports.default = validateRouteConfigMap;
-},725,[693],"react-navigation/src/routers/validateRouteConfigMap.js");
+},726,[694],"react-navigation/src/routers/validateRouteConfigMap.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -83886,7 +83965,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   exports.default = function () {
     return (0, _invariant2.default)(false, '`getScreenConfig` has been replaced with `getScreenOptions`');
   };
-},726,[693],"react-navigation/src/routers/getScreenConfigDeprecated.js");
+},727,[694],"react-navigation/src/routers/getScreenConfigDeprecated.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -83899,7 +83978,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     TABS: TABS,
     DRAWER: DRAWER
   };
-},727,[],"react-navigation/src/navigators/NavigatorTypes.js");
+},728,[],"react-navigation/src/navigators/NavigatorTypes.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -84003,7 +84082,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     Default: _reactNative.Platform.OS === 'ios' ? Presets.iOSBottomTabs : Presets.AndroidTopTabs
   };
   exports.default = TabNavigator;
-},728,[108,12,695,689,729,730,742,744,727],"react-navigation/src/navigators/TabNavigator.js");
+},729,[108,12,696,690,730,731,743,745,728],"react-navigation/src/navigators/TabNavigator.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -84310,7 +84389,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       getScreenConfig: _getScreenConfigDeprecated2.default
     };
   };
-},729,[693,723,722,691,725,726],"react-navigation/src/routers/TabRouter.js");
+},730,[694,724,723,692,726,727],"react-navigation/src/routers/TabRouter.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -84575,7 +84654,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       overflow: 'hidden'
     }
   });
-},730,[108,175,12,731,712,741,710],"react-navigation/src/views/TabView/TabView.js");
+},731,[108,175,12,732,713,742,711],"react-navigation/src/views/TabView/TabView.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   module.exports = {
     get TabViewAnimated() {
@@ -84607,7 +84686,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     }
 
   };
-},731,[732,736,735,734,737,738,740],"react-native-tab-view/src/index.js");
+},732,[733,737,736,735,738,739,741],"react-native-tab-view/src/index.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -84887,7 +84966,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       overflow: 'hidden'
     }
   });
-},732,[108,175,127,12,733,734,735,736],"react-native-tab-view/src/TabViewAnimated.js");
+},733,[108,175,127,12,734,735,736,737],"react-native-tab-view/src/TabViewAnimated.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -84941,7 +85020,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     useNativeDriver: _propTypes2.default.bool,
     children: _propTypes2.default.node.isRequired
   };
-},733,[127,12],"react-native-tab-view/src/TabViewPropTypes.js");
+},734,[127,12],"react-native-tab-view/src/TabViewPropTypes.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -85140,7 +85219,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       overflow: 'hidden'
     }
   });
-},734,[108,175,12,733],"react-native-tab-view/src/TabViewPagerAndroid.js");
+},735,[108,175,12,734],"react-native-tab-view/src/TabViewPagerAndroid.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -85365,7 +85444,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       overflow: 'hidden'
     }
   });
-},735,[108,175,12,733],"react-native-tab-view/src/TabViewPagerScroll.js");
+},736,[108,175,12,734],"react-native-tab-view/src/TabViewPagerScroll.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -85637,7 +85716,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       alignItems: 'stretch'
     }
   });
-},736,[108,175,127,12,733],"react-native-tab-view/src/TabViewPagerPan.js");
+},737,[108,175,127,12,734],"react-native-tab-view/src/TabViewPagerPan.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -85889,7 +85968,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       alignItems: 'stretch'
     }
   });
-},737,[108,175,127,12,733],"react-native-tab-view/src/TabViewPagerExperimental.js");
+},738,[108,175,127,12,734],"react-native-tab-view/src/TabViewPagerExperimental.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -86509,7 +86588,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       height: 2
     }
   });
-},738,[108,175,127,12,739,733],"react-native-tab-view/src/TabBar.js");
+},739,[108,175,127,12,740,734],"react-native-tab-view/src/TabBar.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -86653,7 +86732,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }, _temp2));
 
   exports.default = TouchableItem;
-},739,[108,175,127,12],"react-native-tab-view/src/TouchableItem.js");
+},740,[108,175,127,12],"react-native-tab-view/src/TouchableItem.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -86735,7 +86814,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       });
     };
   }
-},740,[108,175],"react-native-tab-view/src/SceneMap.js");
+},741,[108,175],"react-native-tab-view/src/SceneMap.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -86854,7 +86933,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       return _class;
     }(React.PureComponent), _class.displayName = "withCachedChildNavigation(" + displayName + ")", _temp2));
   }
-},741,[108,175,692],"react-navigation/src/withCachedChildNavigation.js");
+},742,[108,175,693],"react-navigation/src/withCachedChildNavigation.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -87075,7 +87154,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       backgroundColor: 'transparent'
     }
   });
-},742,[108,175,12,731,743],"react-navigation/src/views/TabView/TabBarTop.js");
+},743,[108,175,12,732,744],"react-navigation/src/views/TabView/TabBarTop.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -87228,7 +87307,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       justifyContent: 'center'
     }
   });
-},743,[108,175,12],"react-navigation/src/views/TabView/TabBarIcon.js");
+},744,[108,175,12],"react-navigation/src/views/TabView/TabBarIcon.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -87576,7 +87655,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   });
 
   exports.default = (0, _withOrientation2.default)(TabBarBottom);
-},744,[108,175,12,743,710,711],"react-navigation/src/views/TabView/TabBarBottom.js");
+},745,[108,175,12,744,711,712],"react-navigation/src/views/TabView/TabBarBottom.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -87749,7 +87828,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   };
 
   exports.default = DrawerNavigator;
-},745,[108,12,695,689,729,746,747,750,710,727],"react-navigation/src/navigators/DrawerNavigator.js");
+},746,[108,12,696,690,730,747,748,751,711,728],"react-navigation/src/navigators/DrawerNavigator.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -87842,7 +87921,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }(React.PureComponent));
 
   exports.default = (0, _withCachedChildNavigation2.default)(DrawerScreen);
-},746,[108,175,712,741],"react-navigation/src/views/Drawer/DrawerScreen.js");
+},747,[108,175,713,742],"react-navigation/src/views/Drawer/DrawerScreen.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -88071,7 +88150,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   }(React.PureComponent));
 
   exports.default = DrawerView;
-},747,[108,175,12,748,692,749],"react-navigation/src/views/Drawer/DrawerView.js");
+},748,[108,175,12,749,693,750],"react-navigation/src/views/Drawer/DrawerView.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -88080,7 +88159,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   var _reactNative = require(_dependencyMap[0], 'react-native');
 
   exports.default = _reactNative.DrawerLayoutAndroid;
-},748,[12],"react-native-drawer-layout-polyfill/dist/index.android.js");
+},749,[12],"react-native-drawer-layout-polyfill/dist/index.android.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -88278,7 +88357,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
       flex: 1
     }
   });
-},749,[108,175,12,741,691,693,710],"react-navigation/src/views/Drawer/DrawerSidebar.js");
+},750,[108,175,12,742,692,694,711],"react-navigation/src/views/Drawer/DrawerSidebar.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -88444,7 +88523,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
   });
 
   exports.default = DrawerNavigatorItems;
-},750,[108,12,710,706],"react-navigation/src/views/Drawer/DrawerNavigatorItems.js");
+},751,[108,12,711,707],"react-navigation/src/views/Drawer/DrawerNavigatorItems.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -88490,7 +88569,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     };
     return (0, _hoistNonReactStatics2.default)(componentWithNavigation, Component);
   }
-},751,[108,127,493],"react-navigation/src/views/withNavigation.js");
+},752,[108,127,493],"react-navigation/src/views/withNavigation.js");
 __d(function (global, require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -88528,7 +88607,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     }
   };
   exports.default = NavigationModules;
-},752,[],"navigation-modules");
+},753,[],"navigation-modules");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -88697,7 +88776,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     }(_react2.Component));
 
     exports.default = SideMenu;
-},753,[108,175,12,688,607,752],"puffmobile/src/components/common/side-menu.js");
+},754,[108,175,12,689,607,753],"puffmobile/src/components/common/side-menu.js");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -88833,7 +88912,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     UserContainer = (0, _reactRedux.connect)(mapStateToProps, actionCreators)(UserContainer);
     exports.default = UserContainer;
-},754,[108,175,12,488,653,654,682,755],"puffmobile/src/container/user-container.js");
+},755,[108,175,12,488,654,655,683,756],"puffmobile/src/container/user-container.js");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -88920,7 +88999,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     }(_react2.Component));
 
     exports.default = UserList;
-},755,[108,175,12,488],"puffmobile/src/components/userlist-component.js");
+},756,[108,175,12,488],"puffmobile/src/components/userlist-component.js");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -88956,6 +89035,8 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+    function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
     function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -88990,11 +89071,34 @@ __d(function (global, require, module, exports, _dependencyMap) {
             var _this = _possibleConstructorReturn(this, (ClientContainer.__proto__ || Object.getPrototypeOf(ClientContainer)).call(this, props));
 
             _this.componentWillMount = function () {
-                _this.props.getClients();
+                _this._refreshClientList();
+            };
+
+            _this._refreshClientList = function () {
+                _this.setState({
+                    currentPage: 1
+                }, function () {
+                    _this.props.getClients(_this.state.currentPage);
+
+                    console.log("_refreshClientList!!");
+                });
+            };
+
+            _this._loadMore = function () {
+                var page = _this.state.currentPage + 1;
+
+                _this.setState({
+                    currentPage: page
+                }, function () {
+                    _this.props.getClients(_this.state.currentPage);
+
+                    console.log("_loadMore!!");
+                });
             };
 
             _this.state = {
-                clientData: []
+                clientData: [],
+                currentPage: 1
             };
             return _this;
         }
@@ -89003,8 +89107,15 @@ __d(function (global, require, module, exports, _dependencyMap) {
             key: "componentWillReceiveProps",
             value: function componentWillReceiveProps(nextProps) {
                 if (this.props.client !== nextProps.client) {
+                    var tempClientData = nextProps.client;
+
+                    if (this.state.currentPage > 1) {
+                        tempClientData.rows = [].concat(_toConsumableArray(this.state.clientData.rows), _toConsumableArray(tempClientData.rows));
+                    }
+
+                    console.log(tempClientData);
                     this.setState({
-                        clientData: nextProps.client
+                        clientData: tempClientData
                     });
                 }
             }
@@ -89016,7 +89127,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 30
+                            lineNumber: 55
                         }
                     },
                     _react3.default.createElement(_reactNative.StatusBar, {
@@ -89025,7 +89136,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         animated: true,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 31
+                            lineNumber: 56
                         }
                     }),
                     _reactNative.Platform.OS === 'android' && _reactNative.Platform.Version >= 20 ? _react3.default.createElement(_reactNative.View, {
@@ -89035,7 +89146,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 32
+                            lineNumber: 57
                         }
                     }) : null,
                     _react3.default.createElement(_reactNative.ToolbarAndroid, {
@@ -89048,14 +89159,16 @@ __d(function (global, require, module, exports, _dependencyMap) {
                         title: "\u4E50\u8299\u574A\u5BA2\u6237\u4FE1\u606F\u7BA1\u7406\u7CFB\u7EDF",
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 33
+                            lineNumber: 58
                         }
                     }),
                     _react3.default.createElement(_clientlistComponent2.default, {
                         dataSoruce: this.state.clientData,
+                        onRefresh: this._refreshClientList,
+                        onLoadMore: this._loadMore,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 35
+                            lineNumber: 60
                         }
                     })
                 );
@@ -89075,7 +89188,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     ClientContainer = (0, _reactRedux.connect)(mapStateToProps, actionCreators)(ClientContainer);
     exports.default = ClientContainer;
-},756,[108,175,12,488,757,761],"puffmobile/src/container/client-container.js");
+},757,[108,175,12,488,758,760],"puffmobile/src/container/client-container.js");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -89097,9 +89210,14 @@ __d(function (global, require, module, exports, _dependencyMap) {
 
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-    function getClients(page, id, name, phone, address) {
+    function getClients(page) {
+        var id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+        var name = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
         var _this = this;
 
+        var phone = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+        var address = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
         return function _callee(dispatch, getState) {
             var _getState, user, request, response, data, totalPages, pageSize;
 
@@ -89138,7 +89256,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     function updateClient() {}
 
     function deleteClient() {}
-},757,[654,524,758],"puffmobile/src/actions/client-actions.js");
+},758,[655,524,759],"puffmobile/src/actions/client-actions.js");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -89215,86 +89333,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
     }(_baseServiceRequest3.default);
 
     exports.default = GetClientsRequest;
-},758,[683,684,685],"puffmobile/src/services/request/get-clients-request.js");
-__d(function (global, require, module, exports, _dependencyMap) {
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-
-    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-    var _reactNative = require(_dependencyMap[0], "react-native");
-
-    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-    var PersistenceHelper = function () {
-        function PersistenceHelper() {
-            _classCallCheck(this, PersistenceHelper);
-
-            _objectMap = {};
-        }
-
-        _createClass(PersistenceHelper, [{
-            key: "getItem",
-            value: function getItem(key, callback) {
-                if (_objectMap.hasOwnProperty(key)) {
-                    callback(undefined, _objectMap[key]);
-                } else {
-                    _reactNative.AsyncStorage.getItem(key, function (error, result) {
-                        if (error) {
-                            if (callback) {
-                                callback(error, undefined);
-                            }
-                        } else {
-                            if (callback) {
-                                callback(undefined, result);
-                            }
-                        }
-                    });
-                }
-            }
-        }, {
-            key: "setItem",
-            value: function setItem(key, item, callback) {
-                return _reactNative.AsyncStorage.setItem(key, item, function (error) {
-                    if (error) {
-                        if (callback) {
-                            callback(error);
-                        }
-                    } else {
-                        _objectMap[key] = item;
-
-                        if (callback) {
-                            callback();
-                        }
-                    }
-                });
-            }
-        }, {
-            key: "removeItem",
-            value: function removeItem(key, callback) {
-                return _reactNative.AsyncStorage.removeItem(key, function (error) {
-                    if (error) {
-                        if (callback) {
-                            callback(error);
-                        }
-                    } else {
-                        delete _objectMap["key"];
-
-                        if (callback) {
-                            callback();
-                        }
-                    }
-                });
-            }
-        }]);
-
-        return PersistenceHelper;
-    }();
-
-    var persistenceHelper = new PersistenceHelper();
-    exports.default = persistenceHelper;
-},760,[12],"persistence-helper");
+},759,[684,685,686],"puffmobile/src/services/request/get-clients-request.js");
 __d(function (global, require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -89321,6 +89360,16 @@ __d(function (global, require, module, exports, _dependencyMap) {
     var _Ionicons = require(_dependencyMap[4], "react-native-vector-icons/Ionicons");
 
     var _Ionicons2 = _interopRequireDefault(_Ionicons);
+
+    var _noDataView = require(_dependencyMap[5], "no-data-view");
+
+    var _noDataView2 = _interopRequireDefault(_noDataView);
+
+    var _clientActions = require(_dependencyMap[6], "../actions/client-actions");
+
+    var ClientActions = _interopRequireWildcard(_clientActions);
+
+    function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -89371,7 +89420,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                     },
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 29
+                        lineNumber: 34
                     }
                 });
             };
@@ -89380,7 +89429,8 @@ __d(function (global, require, module, exports, _dependencyMap) {
                 rows: [],
                 totalPages: 0,
                 pageSzie: 20,
-                page: 1
+                page: 1,
+                isRefreshing: false
             };
             return _this;
         }
@@ -89388,19 +89438,22 @@ __d(function (global, require, module, exports, _dependencyMap) {
         _createClass(ClientList, [{
             key: "render",
             value: function render() {
-                console.log("我是客户列表");
-                console.log(this.props.dataSoruce);
                 return _react3.default.createElement(
                     _reactNative.View,
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 36
+                            lineNumber: 41
                         }
                     },
                     _react3.default.createElement(_reactNative.FlatList, {
                         data: this.state.rows,
                         ItemSeparatorComponent: this._rowSplitter,
+                        refreshing: this.state.isRefreshing,
+                        onRefresh: this.props.onRefresh,
+                        onEndReached: this.props.onLoadMore,
+                        onEndReachedThreshold: 0,
+                        ListEmptyComponent: _noDataView2.default,
                         renderItem: function renderItem(_ref) {
                             var item = _ref.item;
                             return _react3.default.createElement(
@@ -89413,7 +89466,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 41
+                                        lineNumber: 51
                                     }
                                 },
                                 _react3.default.createElement(
@@ -89424,7 +89477,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 42
+                                            lineNumber: 52
                                         }
                                     },
                                     _react3.default.createElement(_Ionicons2.default, {
@@ -89435,7 +89488,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 43
+                                            lineNumber: 53
                                         }
                                     }),
                                     _react3.default.createElement(
@@ -89443,7 +89496,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                         {
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 44
+                                                lineNumber: 54
                                             }
                                         },
                                         item.Name
@@ -89458,7 +89511,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 46
+                                            lineNumber: 56
                                         }
                                     },
                                     _react3.default.createElement(_Ionicons2.default, {
@@ -89469,7 +89522,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 47
+                                            lineNumber: 57
                                         }
                                     }),
                                     _react3.default.createElement(
@@ -89477,7 +89530,7 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                         {
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 48
+                                                lineNumber: 58
                                             }
                                         },
                                         item.Phone
@@ -89485,12 +89538,12 @@ __d(function (global, require, module, exports, _dependencyMap) {
                                 )
                             );
                         },
-                        keyExtractor: function keyExtractor(item) {
-                            return item.id;
+                        keyExtractor: function keyExtractor(item, index) {
+                            return index;
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 37
+                            lineNumber: 42
                         }
                     })
                 );
@@ -89500,8 +89553,104 @@ __d(function (global, require, module, exports, _dependencyMap) {
         return ClientList;
     }(_react2.Component));
 
+    var actionCreators = _extends({}, ClientActions);
+
+    ClientList = (0, _reactRedux.connect)(null, actionCreators)(ClientList);
     exports.default = ClientList;
-},761,[108,175,12,488,607],"puffmobile/src/components/clientlist-component.js");
+},760,[108,175,12,488,607,761,758],"puffmobile/src/components/clientlist-component.js");
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "d:\\SourceCode\\ReactJS\\PuffMobile\\src\\components\\common\\no-data-view.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        NoDataView: {
+            displayName: "NoDataView"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "d:/SourceCode/ReactJS/PuffMobile/src/components/common/no-data-view.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var NoDataView = _wrapComponent("NoDataView")(function (_Component) {
+        _inherits(NoDataView, _Component);
+
+        function NoDataView() {
+            _classCallCheck(this, NoDataView);
+
+            return _possibleConstructorReturn(this, (NoDataView.__proto__ || Object.getPrototypeOf(NoDataView)).apply(this, arguments));
+        }
+
+        _createClass(NoDataView, [{
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: {
+                            height: '100%',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 10
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: {
+                                fontSize: 16
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 15
+                            }
+                        },
+                        "\u6682\u65E0\u6570\u636E"
+                    )
+                );
+            }
+        }]);
+
+        return NoDataView;
+    }(_react2.Component));
+
+    exports.default = NoDataView;
+},761,[108,175,12],"no-data-view");
 require(23);
 require(11);
 //# sourceMappingURL=index.map

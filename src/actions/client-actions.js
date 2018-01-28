@@ -2,7 +2,7 @@ import restfulApi from "restful-api";
 import { ClientConstant } from "client-action-types";
 import GetClientsRequest from "../services/request/get-clients-request";
 
-export function getClients(page, id, name, phone, address){
+export function getClients(page, id=null, name=null, phone=null, address=null){
     return async (dispatch, getState)=>{
         const {user} = getState(); 
         const request = new GetClientsRequest(user.token, page, id, name, phone, address);
